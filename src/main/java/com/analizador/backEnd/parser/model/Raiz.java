@@ -6,6 +6,7 @@ import com.analizador.backEnd.parser.model.clase.Clase;
 import com.analizador.backEnd.parser.model.funcion.Funcion;
 import com.analizador.backEnd.parser.model.importacion.Importacion;
 import com.analizador.backEnd.parser.model.sentencia.Sentencia;
+import com.analizador.backEnd.parser.model.sentenciaVaraible.SentenciaV;
 
 public class Raiz {
 
@@ -14,15 +15,19 @@ public class Raiz {
     boolean funcion = false;
     boolean clase = false;
 
+    boolean sentenciaV = false;
+
     Importacion importacionClass = new Importacion();
     Funcion funcionCalss = new Funcion();
     Sentencia sentenciaClass = new Sentencia();
-    
     Clase claseClass = new Clase();
+    
+    SentenciaV sentenciaVClass= new SentenciaV();
+    
 
     public boolean scanRaiz(Token lexema) {
 
-        if (importacion == false && sentencia == false && funcion == false && clase == false) {
+        if (importacion == false && sentencia == false && sentenciaV ==false  && funcion == false && clase == false) {
 
             if (lexema.getLexeme().equals("import")) {
                 
@@ -41,6 +46,10 @@ public class Raiz {
                 /// se nececista arreglar esto
                 System.out.println(" puede que sea una sentencia de variables");
 
+                sentenciaVClass.scanSentenciaV(lexema, this);
+
+                sentenciaV = true;
+
 
             }
 
@@ -52,16 +61,18 @@ public class Raiz {
 
             } else if (sentencia == true) {
 
-                sentenciaClass.scanSentencia(lexema, sentenciaClass);
+                sentenciaClass.scanSentencia(lexema, this);
 
             } else if (funcion == true) {
 
-                funcionCalss.scanFuncion(lexema, funcionCalss);
+                funcionCalss.scanFuncion(lexema, this);
 
             } else if (clase == true) {
 
-                claseClass.scanClase(lexema, claseClass);
+                claseClass.scanClase(lexema, this);
 
+            } else if (sentenciaV == true){
+                sentenciaClass.scanSentencia(lexema, this);
             }
 
         }
