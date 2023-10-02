@@ -1,4 +1,4 @@
-package com.leng.analizador.frontEnd.paneles.panelesDerecho;
+package com.analizador.frontEnd.paneles.panelesDerecho;
 
 import javax.swing.JPanel;
 

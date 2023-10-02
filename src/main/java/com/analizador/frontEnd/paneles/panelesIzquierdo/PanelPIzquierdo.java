@@ -1,11 +1,11 @@
-package com.leng.analizador.frontEnd.paneles.panelesIzquierdo;
+package com.analizador.frontEnd.paneles.panelesIzquierdo;
 
 import java.awt.Color;
 
 import javax.swing.BorderFactory;
 import javax.swing.border.Border;
 
-import com.leng.analizador.frontEnd.paneles.ConstructorPanel;
+import com.analizador.frontEnd.paneles.ConstructorPanel;
 
 public class PanelPIzquierdo extends ConstructorPanel {
 

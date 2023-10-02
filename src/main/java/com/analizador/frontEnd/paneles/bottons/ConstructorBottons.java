@@ -1,4 +1,4 @@
-package com.leng.analizador.frontEnd.paneles.bottons;
+package com.analizador.frontEnd.paneles.bottons;
 
 import java.awt.Color;
 import java.awt.Font;

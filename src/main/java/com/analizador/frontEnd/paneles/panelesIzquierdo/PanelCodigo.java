@@ -1,4 +1,4 @@
-package com.leng.analizador.frontEnd.paneles.panelesIzquierdo;
+package com.analizador.frontEnd.paneles.panelesIzquierdo;
 
 import javax.swing.*;
 import javax.swing.text.BadLocationException;
@@ -6,7 +6,7 @@ import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
-import com.leng.analizador.frontEnd.paneles.ConstructorPanel;
+import com.analizador.frontEnd.paneles.ConstructorPanel;
 
 import java.awt.*;
 import java.awt.event.AdjustmentEvent;

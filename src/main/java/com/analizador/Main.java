@@ -1,6 +1,6 @@
-package com.leng.analizador;
+package com.analizador;
 
-import com.leng.analizador.frontEnd.VentanaPrincipal;
+import com.analizador.frontEnd.VentanaPrincipal;
 
 /**
  * Hello world!
