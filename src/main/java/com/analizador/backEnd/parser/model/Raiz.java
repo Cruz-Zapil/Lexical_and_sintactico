@@ -1,6 +1,7 @@
 package com.analizador.backEnd.parser.model;
 
 import com.analizador.backEnd.lexer.Token;
+import com.analizador.backEnd.lexer.dictionary.Constante;
 import com.analizador.backEnd.parser.model.clase.Clase;
 import com.analizador.backEnd.parser.model.funcion.Funcion;
 import com.analizador.backEnd.parser.model.importacion.Importacion;
@@ -16,6 +17,7 @@ public class Raiz {
     Importacion importacionClass = new Importacion();
     Funcion funcionCalss = new Funcion();
     Sentencia sentenciaClass = new Sentencia();
+    
     Clase claseClass = new Clase();
 
     public boolean scanRaiz(Token lexema) {
@@ -35,9 +37,10 @@ public class Raiz {
             } else if (lexema.getLexeme().equals("def")) {
                 funcion = true;
 
-            } else {
+            } else if (lexema.getLexeme().equals(Constante.ID)) {
                 /// se nececista arreglar esto
-                System.out.println(" puede que sea una sentencia");
+                System.out.println(" puede que sea una sentencia de variables");
+
 
             }
 
