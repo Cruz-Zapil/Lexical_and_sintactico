@@ -1,4 +1,4 @@
-package com.leng.analizador.frontEnd.paneles;
+package com.analizador.frontEnd.paneles;
 
 import javax.swing.JPanel;
 import java.awt.Color;

@@ -1,11 +1,11 @@
-package com.leng.analizador.frontEnd;
+package com.analizador.frontEnd;
 
 import javax.swing.JFrame;
 
-import com.leng.analizador.frontEnd.paneles.ConstructorPanel;
-import com.leng.analizador.frontEnd.paneles.panelesDerecho.PanelPDerecho;
-import com.leng.analizador.frontEnd.paneles.panelesIzquierdo.PanelMenu;
-import com.leng.analizador.frontEnd.paneles.panelesIzquierdo.PanelPIzquierdo;
+import com.analizador.frontEnd.paneles.ConstructorPanel;
+import com.analizador.frontEnd.paneles.panelesDerecho.PanelPDerecho;
+import com.analizador.frontEnd.paneles.panelesIzquierdo.PanelMenu;
+import com.analizador.frontEnd.paneles.panelesIzquierdo.PanelPIzquierdo;
 
 public class VentanaPrincipal extends JFrame {
 

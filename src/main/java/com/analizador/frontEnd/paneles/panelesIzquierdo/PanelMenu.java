@@ -1,11 +1,11 @@
-package com.leng.analizador.frontEnd.paneles.panelesIzquierdo;
+package com.analizador.frontEnd.paneles.panelesIzquierdo;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
 
-import com.leng.analizador.frontEnd.actionButtons.AccionButtons;
-import com.leng.analizador.frontEnd.paneles.ConstructorPanel;
-import com.leng.analizador.frontEnd.paneles.bottons.ConstructorBottons;
+import com.analizador.frontEnd.actionButtons.AccionButtons;
+import com.analizador.frontEnd.paneles.ConstructorPanel;
+import com.analizador.frontEnd.paneles.bottons.ConstructorBottons;
 
 public class PanelMenu extends ConstructorPanel {
 

@@ -1,8 +1,8 @@
-package com.leng.analizador.frontEnd.paneles.panelesDerecho;
+package com.analizador.frontEnd.paneles.panelesDerecho;
 
 import java.awt.Color;
 
-import com.leng.analizador.frontEnd.paneles.ConstructorPanel;
+import com.analizador.frontEnd.paneles.ConstructorPanel;
 
 public class PanelPDerecho extends ConstructorPanel {
 
