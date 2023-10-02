@@ -1,0 +1,108 @@
+<mxfile host="app.diagrams.net" modified="2023-10-01T16:30:55.843Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/118.0" etag="2hMplWZrZMGOV4LPr6mq" version="22.0.0" type="device">
+  <diagram name="Página-1" id="K1GZB1eHJAU8GiM56MWf">
+    <mxGraphModel dx="2100" dy="1116" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="foM-1hutoSS7IdrjyAoj-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="foM-1hutoSS7IdrjyAoj-8" target="foM-1hutoSS7IdrjyAoj-15" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="470" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="foM-1hutoSS7IdrjyAoj-8" value="&lt;div&gt;Raiz:&lt;/div&gt;&lt;div&gt;Importacion,&lt;/div&gt;&lt;div&gt;Definicion_Calse&lt;/div&gt;&lt;div&gt;fucion&lt;/div&gt;&lt;div&gt;sentencia&lt;br&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+          <mxGeometry x="250" y="190" width="120" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="foM-1hutoSS7IdrjyAoj-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;" parent="1" source="foM-1hutoSS7IdrjyAoj-8" target="foM-1hutoSS7IdrjyAoj-8" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="390" y="220" />
+              <mxPoint x="390" y="330" />
+              <mxPoint x="350" y="330" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="foM-1hutoSS7IdrjyAoj-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="foM-1hutoSS7IdrjyAoj-15" target="foM-1hutoSS7IdrjyAoj-16" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="foM-1hutoSS7IdrjyAoj-15" value="&lt;div&gt;Importacion:&lt;/div&gt;&lt;div&gt;&quot;impor&quot;&lt;/div&gt;&lt;div&gt;modulos&lt;br&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+          <mxGeometry x="425" y="320" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="foM-1hutoSS7IdrjyAoj-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0.123;entryY=-0.016;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="foM-1hutoSS7IdrjyAoj-16" target="foM-1hutoSS7IdrjyAoj-19" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="foM-1hutoSS7IdrjyAoj-16" value="&lt;div&gt;Modulos:&lt;/div&gt;&lt;div&gt;modulo&lt;/div&gt;&lt;div&gt;&quot;,&quot;&lt;/div&gt;&lt;div&gt;modulo&lt;br&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+          <mxGeometry x="530" y="460" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="foM-1hutoSS7IdrjyAoj-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.709;entryY=1.002;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="foM-1hutoSS7IdrjyAoj-16" target="foM-1hutoSS7IdrjyAoj-16" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="XHa5_aeHVb5PVCvh7Ekj-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="foM-1hutoSS7IdrjyAoj-19" target="XHa5_aeHVb5PVCvh7Ekj-21">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="foM-1hutoSS7IdrjyAoj-19" value="&lt;div&gt;Modulo:&lt;/div&gt;&lt;div&gt;Identificador&lt;/div&gt;&lt;div&gt;&quot;as&quot;&lt;/div&gt;&lt;div&gt;Identificador&lt;br&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+          <mxGeometry x="670" y="570" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="XHa5_aeHVb5PVCvh7Ekj-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="foM-1hutoSS7IdrjyAoj-24" target="XHa5_aeHVb5PVCvh7Ekj-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="foM-1hutoSS7IdrjyAoj-24" value="&lt;div&gt;Definicion de clase:&lt;/div&gt;&lt;div&gt;&quot;class&quot;&lt;/div&gt;&lt;div&gt;identificador&lt;/div&gt;&lt;div&gt;&quot; : &quot;&lt;/div&gt;&lt;div&gt;herencia&lt;/div&gt;&lt;div&gt;&quot; : &quot;&lt;/div&gt;&lt;div&gt;sentencia de clase&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+          <mxGeometry x="255" y="390" width="120" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="XHa5_aeHVb5PVCvh7Ekj-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.458;entryY=-0.035;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="foM-1hutoSS7IdrjyAoj-8" target="foM-1hutoSS7IdrjyAoj-24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="XHa5_aeHVb5PVCvh7Ekj-3" value="&lt;div&gt;identificador:&lt;/div&gt;&lt;div&gt;ID&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="185" y="540" width="70" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="XHa5_aeHVb5PVCvh7Ekj-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.179;entryY=0.014;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="foM-1hutoSS7IdrjyAoj-24" target="XHa5_aeHVb5PVCvh7Ekj-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="XHa5_aeHVb5PVCvh7Ekj-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="XHa5_aeHVb5PVCvh7Ekj-6" target="XHa5_aeHVb5PVCvh7Ekj-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="XHa5_aeHVb5PVCvh7Ekj-6" value="&lt;div&gt;Herencia:&lt;/div&gt;&lt;div&gt;&quot;(&quot;&lt;/div&gt;&lt;div&gt;identificador&lt;/div&gt;&lt;div&gt;(&quot; , &quot; identificador)*&lt;/div&gt;&lt;div&gt;&quot;)&quot;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="295" y="570" width="110" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="XHa5_aeHVb5PVCvh7Ekj-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.644;entryY=1.015;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="XHa5_aeHVb5PVCvh7Ekj-6" target="XHa5_aeHVb5PVCvh7Ekj-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="XHa5_aeHVb5PVCvh7Ekj-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.386;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="foM-1hutoSS7IdrjyAoj-24" target="XHa5_aeHVb5PVCvh7Ekj-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="XHa5_aeHVb5PVCvh7Ekj-9" value="&lt;div&gt;identificador:&lt;/div&gt;&lt;div&gt;ID&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="335" y="750" width="70" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="XHa5_aeHVb5PVCvh7Ekj-11" value="&lt;div&gt;(sentencia de clase)*&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;decorado&lt;/div&gt;&lt;div&gt;identificador&lt;/div&gt;&lt;div&gt;identificador&lt;/div&gt;&lt;div&gt;metodo&lt;/div&gt;&lt;div&gt;propiedad&lt;br&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="451" y="590" width="120" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="XHa5_aeHVb5PVCvh7Ekj-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.549;entryY=1.014;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="XHa5_aeHVb5PVCvh7Ekj-11" target="XHa5_aeHVb5PVCvh7Ekj-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="XHa5_aeHVb5PVCvh7Ekj-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="XHa5_aeHVb5PVCvh7Ekj-16" target="XHa5_aeHVb5PVCvh7Ekj-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="XHa5_aeHVb5PVCvh7Ekj-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="XHa5_aeHVb5PVCvh7Ekj-16" target="XHa5_aeHVb5PVCvh7Ekj-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="XHa5_aeHVb5PVCvh7Ekj-16" value="&lt;div&gt;Decorado&lt;/div&gt;&lt;div&gt;&quot;@&quot;&lt;/div&gt;&lt;div&gt;identificador&lt;/div&gt;&lt;div&gt;--------&lt;/div&gt;&lt;div&gt;&quot; ( &quot;&lt;/div&gt;&lt;div&gt;------&lt;/div&gt;&lt;div&gt;expresion&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;------&lt;/div&gt;&lt;div&gt;&quot;,&quot;&lt;/div&gt;&lt;div&gt;expresion&lt;/div&gt;&lt;div&gt;&quot;)&quot;&lt;br&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="440" y="790" width="170" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="XHa5_aeHVb5PVCvh7Ekj-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.446;entryY=-0.01;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="XHa5_aeHVb5PVCvh7Ekj-11" target="XHa5_aeHVb5PVCvh7Ekj-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="XHa5_aeHVb5PVCvh7Ekj-19" value="&lt;div&gt;expresion&lt;/div&gt;expresion_logica" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="571" y="1030" width="90" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="XHa5_aeHVb5PVCvh7Ekj-20" value="&lt;div&gt;identificador:&lt;/div&gt;&lt;div&gt;ID&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="405" y="1020" width="70" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="XHa5_aeHVb5PVCvh7Ekj-21" value="&lt;div&gt;identificador:&lt;/div&gt;&lt;div&gt;ID&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="800" y="650" width="70" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="XHa5_aeHVb5PVCvh7Ekj-25" value="&lt;div&gt;expresion&lt;/div&gt;expresion_logica" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="500" y="1180" width="90" height="90" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
