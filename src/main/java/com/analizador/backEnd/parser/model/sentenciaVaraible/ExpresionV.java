@@ -11,18 +11,16 @@ public class ExpresionV {
     boolean pila = true;
     Token lexema;
 
-    public boolean scanExpresion(Token lexema, SentenciaV sentencia){
+    public boolean scanExpresion(Token lexema, SentenciaV sentencia) {
 
         /// solicitar siguente lexema
 
-        if(lexema.getTokenType().equals(OperadorAsignacion)){
+        if (lexema.getClaseToken().equals("Asignacion")) {
+            
 
         }
 
-
         return pila;
-
-
 
     }
 

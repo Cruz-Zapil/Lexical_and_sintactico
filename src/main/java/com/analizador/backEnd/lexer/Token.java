@@ -1,12 +1,10 @@
 package com.analizador.backEnd.lexer;
 
-import java.lang.System;
-
-import com.analizador.backEnd.lexer.dictionary.Constante;
 
 public class Token<Token extends Enum<Token>> {
 
     public static final Enum EOF = null;
+
     private Token tokenType;
     private String lexeme;
     private int line;
@@ -23,11 +21,12 @@ public class Token<Token extends Enum<Token>> {
         this.claseToken = claseToken;
     }
 
-    public Token(int type, String lexeme, int line, long charBegin) {
+    public Token(int type, String claseToken ,String lexeme, int line, long charBegin) {
         this.type = type;
         this.lexeme = lexeme;
         this.line = line;
         this.charBegin = charBegin;
+        this.claseToken = claseToken;
 
         comprobacion(this.type, lexeme);
 
