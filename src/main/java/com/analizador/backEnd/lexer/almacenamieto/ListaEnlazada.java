@@ -26,12 +26,12 @@ public class ListaEnlazada {
         if (ultimo == null) {
             return null;
         } else if (primero == ultimo) {
-            Token valor = ultimo.getValor();
+            Token valor = ultimo.getLexema();
             primero = null;
             ultimo = null;
             return valor;
         } else if (primero.getSiguiente() == ultimo) {
-            Token valor = ultimo.getValor();
+            Token valor = ultimo.getLexema();
             primero.setSiguiente(null);
             ultimo = primero;
             return valor;
@@ -41,7 +41,7 @@ public class ListaEnlazada {
             while (nodoActual.getSiguiente() != ultimo) {
                 nodoActual = nodoActual.getSiguiente();
             }
-            Token valor = ultimo.getValor();
+            Token valor = ultimo.getLexema();
             nodoActual.setSiguiente(null);
             ultimo = nodoActual;
             return valor;
@@ -70,7 +70,7 @@ public class ListaEnlazada {
         if (ultimo == null) {
             return null;
         } else {
-            return ultimo.getValor();
+            return ultimo.getLexema();
         }
     }
 
@@ -82,5 +82,39 @@ public class ListaEnlazada {
             return primero;
         }
     }
+
+    public Token obtenerTokenEnPosicion(int posicion) {
+        Nodo current = primero;
+        int indice = 0;
+    
+        while (current != null) {
+            if (indice == posicion) {
+                return current.getLexema(); // Accede al token utilizando el método getToken
+            }
+            current = current.getSiguiente();
+            indice++;
+        }
+    
+        return null;  // La posición no se encontró en la lista
+    }
+
+    public int obtenerPosicionDeToken(Token tokenBuscado) {
+        Nodo current = primero;
+        int posicion = 0;
+        
+        while (current != null) {
+            if (current.getLexema().equals(tokenBuscado)) {
+                return posicion; // Token encontrado, devuelve la posición actual
+            }
+            current = current.getSiguiente();
+            posicion++;
+        }
+        
+        return -1;  // El token no se encontró en la lista
+    }
+    
+
+
+    
 
 }
