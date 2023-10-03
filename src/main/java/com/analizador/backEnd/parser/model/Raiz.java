@@ -1,6 +1,8 @@
 package com.analizador.backEnd.parser.model;
 
 import com.analizador.backEnd.lexer.Token;
+import com.analizador.backEnd.lexer.almacenamieto.ListaEnlazada;
+import com.analizador.backEnd.lexer.almacenamieto.Nodo;
 import com.analizador.backEnd.lexer.dictionary.Constante;
 import com.analizador.backEnd.parser.model.clase.Clase;
 import com.analizador.backEnd.parser.model.funcion.Funcion;
@@ -9,6 +11,8 @@ import com.analizador.backEnd.parser.model.sentencia.Sentencia;
 import com.analizador.backEnd.parser.model.sentenciaVaraible.SentenciaV;
 
 public class Raiz {
+
+    ListaEnlazada lista = new ListaEnlazada();
 
     boolean importacion = false;
     boolean sentencia = false;
@@ -25,16 +29,22 @@ public class Raiz {
     SentenciaV sentenciaVClass= new SentenciaV();
     
 
-    public boolean scanRaiz(Token lexema) {
+    public boolean scanRaiz(Token lexema, ListaEnlazada listaLexema) {
+
+        this.lista = listaLexema;
 
         if (importacion == false && sentencia == false && sentenciaV ==false  && funcion == false && clase == false) {
 
             if (lexema.getLexeme().equals("import")) {
                 
                 /// siguente lexema
-                importacionClass.scanImport(lexema, this);
-                
+                System.out.println("--- es un import-------");
+
+                if(!importacionClass.scanImport(lexema, this, lista)){
+                    importacion = false;
+                }
                 importacion = true;
+                
 
             } else if (lexema.getLexeme().equals("class")) {
 
@@ -57,7 +67,7 @@ public class Raiz {
 
             if (importacion == true) {
 
-                importacionClass.scanImport(lexema, this);
+                importacionClass.scanImport(lexema, this, lista);
 
             } else if (sentencia == true) {
 

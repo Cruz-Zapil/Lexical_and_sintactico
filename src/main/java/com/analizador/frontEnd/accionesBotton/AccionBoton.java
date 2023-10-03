@@ -11,6 +11,8 @@ import com.analizador.backEnd.lexer.Token;
 import com.analizador.backEnd.lexer.AFD.Lexer;
 import com.analizador.backEnd.lexer.almacenamieto.ListaEnlazada;
 import com.analizador.backEnd.lexer.dictionary.Constante;
+import com.analizador.backEnd.parser.model.Auxiliar;
+import com.analizador.backEnd.parser.model.Raiz;
 import com.analizador.frontEnd.Panel1;
 import com.analizador.frontEnd.Panel1Escritura;
 import com.analizador.frontEnd.Panel2;
@@ -21,9 +23,9 @@ public class AccionBoton implements java.awt.event.ActionListener {
 
     private Panel1 panel1 = new Panel1();
     private Panel2 panel2 = new Panel2();
-    private String texto;
 
-     static ListaEnlazada listaTokens = new ListaEnlazada();
+      ListaEnlazada listaTokens = new ListaEnlazada();
+     Raiz raiz = new Raiz();
 
     @Override
     public void actionPerformed(ActionEvent event) {
@@ -108,7 +110,6 @@ public class AccionBoton implements java.awt.event.ActionListener {
 
             Reader extraerTexto = new StringReader(codigo);
 
-
             Lexer lexer = new Lexer(extraerTexto);
             Token token = lexer.yylex(); 
             
@@ -120,8 +121,6 @@ public class AccionBoton implements java.awt.event.ActionListener {
 
                System.out.println(" en lista: " + listaTokens.obtenerUltimo());
 
-
-
                 token = lexer.yylex();
 
 
@@ -130,6 +129,15 @@ public class AccionBoton implements java.awt.event.ActionListener {
 
             System.out.println("no hay texto");
         }
+
+        /// conectar con la siguente face...
+
+        Token tmp = listaTokens.getPrimero().getLexema();
+        Auxiliar.siguenteLexema(listaTokens.obtenerPosicionDeToken(tmp));
+        raiz.scanRaiz( tmp, listaTokens );
+        
+
+
 
     }
 }

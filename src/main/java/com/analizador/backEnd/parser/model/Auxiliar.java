@@ -1,14 +1,15 @@
 package com.analizador.backEnd.parser.model;
 
-import com.analizador.backEnd.lexer.Token;
-
 public class Auxiliar {
 
-    
+    private static int sicionLexema ;
 
-    public static Token siguenteLexema (){
-        return null;
+    public static int siguenteLexema(int posicionLexema) {
+
+        sicionLexema = posicionLexema ;
+
+        return sicionLexema;
 
     }
-    
+
 }

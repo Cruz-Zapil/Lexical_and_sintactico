@@ -13,11 +13,11 @@ public class Nodo {
         this.siguiente = null;
     }
 
-    public Token getValor() {
+    public Token getLexema() {
         return lexema;
     }
 
-    public void setValor(Token valor) {
+    public void setLexema(Token valor) {
         this.lexema= lexema;
     }
 

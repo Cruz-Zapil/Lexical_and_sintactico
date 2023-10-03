@@ -1,7 +1,6 @@
 package com.analizador.backEnd.parser.model.sentenciaVaraible;
 
 import com.analizador.backEnd.lexer.Token;
-import com.analizador.backEnd.lexer.dictionary.concatenables.OperadorAsignacion;
 import com.analizador.backEnd.parser.model.importacion.Modulos;
 
 public class ExpresionV {
