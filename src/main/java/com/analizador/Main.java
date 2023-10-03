@@ -1,6 +1,6 @@
 package com.analizador;
 
-import com.analizador.frontEnd.VentanaPrincipal;
+import com.analizador.frontEnd.VentanPrincipal;
 
 /**
  * Hello world!
@@ -13,7 +13,8 @@ public class Main
        
         System.out.println(" Holis XD");
 
-        new VentanaPrincipal();
+        new VentanPrincipal();
+        
     }
 }
  

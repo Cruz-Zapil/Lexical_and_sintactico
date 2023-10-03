@@ -1,4 +1,4 @@
-package com.analizador.frontEnd.paneles.panelesIzquierdo;
+package com.analizador.frontEnd;
 
 import javax.swing.*;
 import javax.swing.text.BadLocationException;
@@ -6,29 +6,23 @@ import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
-import com.analizador.frontEnd.paneles.ConstructorPanel;
-
 import java.awt.*;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 
-public class PanelCodigo extends ConstructorPanel {
+public class Panel1Escritura extends JPanel {
 
     private static JTextPane textAreaImput;
 
-    public PanelCodigo() {
-
-        super(Color.black,525,580);
+    public Panel1Escritura() {
 
         this.setLayout(new BorderLayout());
 
         // Crear dos JTextAreas
         textAreaImput = new JTextPane();
-        textAreaImput.setBackground(new Color(32,32,32));
 
         // Crear un JScrollPane
         JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setBackground(Color.black);
 
         // Agregar los JTextAreas al JScrollPane
         scrollPane.setViewportView(textAreaImput);
@@ -37,7 +31,7 @@ public class PanelCodigo extends ConstructorPanel {
 
         // Agregar el JScrollPane al panel
         this.add(scrollPane);
-        this.setLocation(55,35);
+        this.setBounds(50, 30, 500, 370);
         this.setVisible(true);
 
     }
@@ -88,7 +82,6 @@ class LineNumberTextPane extends JTextPane {
         setBackground(Color.lightGray);
         setPreferredSize(new Dimension(30, Integer.MAX_VALUE));
         updateLineNumbers();
-        this.setLayout(null);
 
         textPane.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
             @Override
