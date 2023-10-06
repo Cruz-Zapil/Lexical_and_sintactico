@@ -4,6 +4,8 @@ import colorsys
 import math
 
 def dibujar_flor(x, y, escala:1.0):
+     
+
     turtle.speed(0.05)
     turtle.bgcolor("black")
 
@@ -12,6 +14,23 @@ def dibujar_flor(x, y, escala:1.0):
     turtle.goto(x, y - 20 * escala)
     turtle.pendown()
     h = 0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     for i in range(16):
         for j in range(18):
@@ -34,7 +53,7 @@ def dibujar_flor(x, y, escala:1.0):
     phi = 137.508 * (math.pi / 180.0)
 
     
-
+    
     for i in range(200):
         r = 2 * math.sqrt(i)
         theta = i * phi
@@ -77,5 +96,6 @@ turtle.goto(0, 0)
 turtle.pendown()
 turtle.color("yellow")
 turtle.write("Te quiero Paty:3", align="center", font=("DejaVu Serif", 24, "italic"))
+
 
 turtle.done()
