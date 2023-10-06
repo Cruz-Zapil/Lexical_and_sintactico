@@ -101,8 +101,6 @@ if(lex){
     }
 }
 
-
-
 //// token operador doble
 ("**"|"--"|"++") {contador++; lex=true; saltoLinea = false; return new Token(1, yytext(),yyline, yychar);}
 
