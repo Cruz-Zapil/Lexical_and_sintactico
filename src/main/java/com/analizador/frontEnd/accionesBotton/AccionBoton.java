@@ -11,7 +11,6 @@ import com.analizador.backEnd.lexer.Token;
 import com.analizador.backEnd.lexer.AFD.Lexer;
 import com.analizador.backEnd.lexer.almacenamieto.ListaEnlazada;
 import com.analizador.backEnd.lexer.dictionary.Constante;
-import com.analizador.backEnd.parser.model.Auxiliar;
 import com.analizador.backEnd.parser.model.Raiz;
 import com.analizador.frontEnd.Panel1;
 import com.analizador.frontEnd.Panel1Escritura;
@@ -24,8 +23,7 @@ public class AccionBoton implements java.awt.event.ActionListener {
     private Panel1 panel1 = new Panel1();
     private Panel2 panel2 = new Panel2();
 
-      ListaEnlazada listaTokens = new ListaEnlazada();
-     Raiz raiz = new Raiz();
+    ListaEnlazada listaTokens = new ListaEnlazada();
 
     @Override
     public void actionPerformed(ActionEvent event) {
@@ -54,14 +52,13 @@ public class AccionBoton implements java.awt.event.ActionListener {
 
             } else if (botones.getText().equals("Play")) {
                 /// boton para obtener texto en TextPane
-        
+
                 System.out.println("Play");
-                
-                
+
                 try {
                     conectarLexer(Panel1Escritura.getText());
                 } catch (IOException e) {
-                
+
                     System.out.println("error en conectar lexer");
                     e.printStackTrace();
                 }
@@ -103,41 +100,54 @@ public class AccionBoton implements java.awt.event.ActionListener {
 
     /// conectar con mi automata finito determinista
 
+    public void conectarLexer(String codigo) throws IOException {
 
-    public void conectarLexer(String codigo ) throws IOException {
-
-        if ( codigo != null) {
+        if (codigo != null) {
 
             Reader extraerTexto = new StringReader(codigo);
 
             Lexer lexer = new Lexer(extraerTexto);
-            Token token = lexer.yylex(); 
-            
+            Token token = lexer.yylex();
+
             while (token.getTokenType() != Constante.EOF) {
 
                 /// almacenar tokens
 
-               listaTokens.insertarAlFinal(token);
+                listaTokens.insertarAlFinal(token);
 
-               System.out.println(" en lista: " + listaTokens.obtenerUltimo());
+                System.out.println(" en lista: " + listaTokens.getUtltimo());
 
                 token = lexer.yylex();
 
-
             }
-        }else{
+            /// insertamos el token final de archivo
+            listaTokens.insertarAlFinal(token);
+
+            // eliminar saltos
+            
+
+            /// llamanos funcion raiz
+            ///new Raiz().scanRaiz(listaTokens);
+
+
+        } else {
 
             System.out.println("no hay texto");
         }
 
         /// conectar con la siguente face...
+    }
 
-        Token tmp = listaTokens.getPrimero().getLexema();
-        Auxiliar.siguenteLexema(listaTokens.obtenerPosicionDeToken(tmp));
-        raiz.scanRaiz( tmp, listaTokens );
-        
+    /// eliminar saltos de linea
 
+    public void eliminarSaltos() {
+        Token token = listaTokens.getUtltimo();
 
+        while (token.getTokenType() != Constante.EOF) {
 
+            token = listaTokens.getSiguiente();
+            System.out.println(token.getLexeme());
+
+        }
     }
 }

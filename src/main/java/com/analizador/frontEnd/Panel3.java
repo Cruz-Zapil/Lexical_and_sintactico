@@ -1,8 +1,6 @@
 package com.analizador.frontEnd;
 
-
 import javax.swing.JPanel;
-
 import com.analizador.frontEnd.accionesBotton.AccionBoton;
 import com.analizador.frontEnd.compnents.ConstructorBotton;
 

@@ -7,6 +7,7 @@ public enum Keyword {
     AS("as"),
     ASSERT("assert"),
     BREAK("break"),
+    PRINT("print"),
     CLASS("class"),
     CONTINUE("continue"),
     DEF("def"),

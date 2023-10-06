@@ -3,7 +3,6 @@ package com.analizador.backEnd.lexer;
 
 public class Token<Token extends Enum<Token>> {
 
-    public static final Enum EOF = null;
 
     private Token tokenType;
     private String lexeme;
@@ -21,7 +20,7 @@ public class Token<Token extends Enum<Token>> {
         this.claseToken = claseToken;
     }
 
-    public Token(int type, String claseToken ,String lexeme, int line, long charBegin) {
+    public Token(int type,  String lexeme, int line, long charBegin) {
         this.type = type;
         this.lexeme = lexeme;
         this.line = line;

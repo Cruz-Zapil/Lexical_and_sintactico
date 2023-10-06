@@ -24,6 +24,7 @@ public class ListaEnlazada {
 
     public Token eliminarAlFinal() {
         if (ultimo == null) {
+            System.out.println(" error ya no hay mas lexemas");
             return null;
         } else if (primero == ultimo) {
             Token valor = ultimo.getLexema();
@@ -48,25 +49,9 @@ public class ListaEnlazada {
         }
     }
 
-    public void eliminarAlFinal1() {
-        if (ultimo == null) {
-            System.out.println(" Erroooooor : ya no hay mas objetos");
-        } else if (primero == ultimo) {
-            primero = null;
-            ultimo = null;
 
-        } else {
-            Nodo nodoActual = primero;
-            while (nodoActual.getSiguiente() != ultimo) {
-                nodoActual = nodoActual.getSiguiente();
-            }
-            nodoActual.setSiguiente(null);
-            ultimo = nodoActual;
 
-        }
-    }
-
-    public Token obtenerUltimo() {
+    public Token getUtltimo() {
         if (ultimo == null) {
             return null;
         } else {
@@ -83,6 +68,34 @@ public class ListaEnlazada {
         }
     }
 
+    public Token eliminarPrimero() {
+        if (primero == null) {
+            System.out.println("Error: La lista está vacía");
+            return null;
+        } else {
+            Token valor = primero.getLexema();
+            primero = primero.getSiguiente();
+            if (primero == null) {
+                ultimo = null; // Si la lista queda vacía después de eliminar el primero, también se actualiza 'ultimo'
+            }
+            return valor;
+        }
+    }
+
+    public Token getSiguiente() {
+        if (primero == null || primero.getSiguiente() == null) {
+            // Si la lista está vacía o solo hay un elemento, no hay siguiente
+            System.out.println(" lista vacia ");
+            return null;
+        } else {
+            return primero.getSiguiente().getLexema();
+        }
+    }
+    
+
+
+    /*
+
     public Token obtenerTokenEnPosicion(int posicion) {
         Nodo current = primero;
         int indice = 0;
@@ -98,7 +111,7 @@ public class ListaEnlazada {
         return null;  // La posición no se encontró en la lista
     }
 
-    public int obtenerPosicionDeToken(Token tokenBuscado) {
+    public int getPosicionDeToken(Token tokenBuscado) {
         Nodo current = primero;
         int posicion = 0;
         
@@ -112,9 +125,8 @@ public class ListaEnlazada {
         
         return -1;  // El token no se encontró en la lista
     }
-    
 
-
+    */
     
 
 }

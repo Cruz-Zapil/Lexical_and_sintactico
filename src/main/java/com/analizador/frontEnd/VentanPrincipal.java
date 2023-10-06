@@ -3,11 +3,9 @@ package com.analizador.frontEnd;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-
 import com.analizador.frontEnd.compnents.ConstructorPanel;
 
 public class VentanPrincipal extends javax.swing.JFrame {
