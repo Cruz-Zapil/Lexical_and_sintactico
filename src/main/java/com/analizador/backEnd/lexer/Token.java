@@ -1,8 +1,6 @@
 package com.analizador.backEnd.lexer;
 
-
 public class Token<Token extends Enum<Token>> {
-
 
     private Token tokenType;
     private String lexeme;
@@ -10,6 +8,7 @@ public class Token<Token extends Enum<Token>> {
     private long charBegin;
     private int type;
     private String claseToken;
+    private int nivelIdent;
 
     /// Constructores
     public Token(Token tokenType, String claseToken, String lexeme, int line, long charBegin) {
@@ -20,15 +19,23 @@ public class Token<Token extends Enum<Token>> {
         this.claseToken = claseToken;
     }
 
-    public Token(int type,  String lexeme, int line, long charBegin) {
+    public Token(int type, String lexeme, int line, long charBegin) {
         this.type = type;
         this.lexeme = lexeme;
         this.line = line;
         this.charBegin = charBegin;
-        this.claseToken = claseToken;
 
         comprobacion(this.type, lexeme);
 
+    }
+
+    public Token(Token tokenType, int nivelIdent, String lexeme, int line, long charBegin) {
+
+        this.tokenType = tokenType;
+        this.nivelIdent = nivelIdent;
+        this.lexeme = lexeme;
+        this.line = line;
+        this.charBegin = charBegin;
     }
 
     public void comprobacion(int type, String lexeme) {
@@ -74,16 +81,15 @@ public class Token<Token extends Enum<Token>> {
     public String toString() {
         // Reemplazar saltos de línea en el lexema por "\n"
         String lexemeWithEscapedNewlines = lexeme.replace("\n", "\\n");
-    
+
         // Reemplazar retorno de carro en el lexema por "\r"
         lexemeWithEscapedNewlines = lexemeWithEscapedNewlines.replace("\r", "\\r");
-    
+
         // Reemplazar tabulaciones en el lexema por "\t"
         lexemeWithEscapedNewlines = lexemeWithEscapedNewlines.replace("\t", "\\t");
-    
+
         return "Token [tokenType=" + claseToken + "." + tokenType + ", lexeme=" + lexemeWithEscapedNewlines +
                 ", line=" + line + ", charBegin=" + charBegin + "]";
     }
-    
 
 }

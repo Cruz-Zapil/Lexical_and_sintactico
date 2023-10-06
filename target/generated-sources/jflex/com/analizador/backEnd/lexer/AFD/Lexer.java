@@ -4,10 +4,6 @@
 
 package com.analizador.backEnd.lexer.AFD;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
 import com.analizador.backEnd.lexer.Token;
 import com.analizador.backEnd.lexer.dictionary.BloqueCodigo;
 import com.analizador.backEnd.lexer.dictionary.Constante;
@@ -105,10 +101,10 @@ public class Lexer {
     "\1\0\1\1\1\2\1\3\1\1\1\4\2\1\1\5"+
     "\1\6\1\1\1\7\3\6\1\10\1\11\1\7\1\12"+
     "\1\13\1\4\1\11\1\0\1\14\1\15\1\0\1\16"+
-    "\1\17\1\20\1\0\1\4\1\21\1\2\1\4";
+    "\1\17\1\20\1\0\1\4\1\21\1\2";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[34];
+    int [] result = new int[33];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -137,10 +133,10 @@ public class Lexer {
     "\0\204\0\26\0\232\0\26\0\260\0\306\0\334\0\362"+
     "\0\130\0\130\0\u0108\0\u011e\0\u0134\0\26\0\156\0\156"+
     "\0\26\0\232\0\232\0\26\0\26\0\u014a\0\u0160\0\u014a"+
-    "\0\u0176\0\u0176";
+    "\0\u0176";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[34];
+    int [] result = new int[33];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -172,7 +168,7 @@ public class Lexer {
     "\1\34\4\0\1\35\21\0\1\34\3\0\1\35\1\14"+
     "\21\0\1\36\1\20\25\0\1\24\3\0\1\23\1\24"+
     "\20\0\1\24\3\0\2\24\5\0\1\37\40\0\1\40"+
-    "\12\0\1\41\25\0\1\42\20\0";
+    "\12\0\1\41\25\0\1\6\20\0";
 
   private static int [] zzUnpackTrans() {
     int [] result = new int[396];
@@ -219,10 +215,10 @@ public class Lexer {
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
     "\1\0\3\11\5\1\1\11\1\1\1\11\11\1\1\11"+
-    "\1\0\1\1\1\11\1\0\1\1\2\11\1\0\4\1";
+    "\1\0\1\1\1\11\1\0\1\1\2\11\1\0\3\1";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[34];
+    int [] result = new int[33];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -302,31 +298,27 @@ public class Lexer {
   /* user code: */
 
 private int contador;
-private int currentIndent = 0;
-private Stack<Integer> indentStack = new Stack<>();
+private boolean lex=false;
 private boolean saltoLinea = false;
-private List<Token> dedentTokens = new ArrayList<>();
 
 int contarIndentacion(String texto) {
-    int contador = 0;
+    int tmp = 0;
+    int identacion=0;
     for (char c : texto.toCharArray()) {
         if (c == ' ') {
-            contador++;
+            tmp++;
         } else if (c == '\t') {
-            contador += 4; // Ajusta la cantidad de espacios por tabulación según tus preferencias
+            tmp+=4; // Ajusta la cantidad de espacios por tabulación según tus preferencias
         } else {
             break;
         }
-    }
-    return contador;
-}
 
-void dedentTokens() {
-    while (!indentStack.isEmpty() && currentIndent < indentStack.peek()) {
-        currentIndent = indentStack.pop();
-        contador++;
-        dedentTokens.add(new Token(BloqueCodigo.DEDENT, "BloqueCodigo", "", yyline, yychar));
+        if(tmp==4){
+            tmp=0;
+            identacion++;
+        }
     }
+    return identacion;
 }
 
 
@@ -726,47 +718,26 @@ void dedentTokens() {
           case 1:
             { contador++;
     saltoLinea = false;
+    lex=true;
     return new Token(Constante.SIMBOLO_NO_RECONOCIDO, "null", yytext(), yyline, yychar);
             }
             // fall through
           case 18: break;
           case 2:
-            { int indentacionActual = contarIndentacion(yytext());
-    if (indentacionActual > currentIndent) {
-        // Aumento de indentación
-        indentStack.push(currentIndent);
-        currentIndent = indentacionActual;
-    } else if (indentacionActual < currentIndent) {
-        // Dedentación
-        while (indentacionActual < currentIndent) {
-            currentIndent = indentStack.pop();
-            contador++;
-            dedentTokens.add(new Token(BloqueCodigo.DEDENT, "BloqueCodigo", "", yyline, yychar));
-        }
-    }
+            { if(!saltoLinea){
+    int indentacionActual = contarIndentacion(yytext());
     contador++;
-    saltoLinea = false;
-    return new Token(BloqueCodigo.IDENTACION, "BloqueCodigo", yytext(), yyline, yychar);
+    return new Token(BloqueCodigo.IDENTACION, indentacionActual, yytext(), yyline, yychar);
+    }
             }
             // fall through
           case 19: break;
           case 3:
-            { int indentacionActual = contarIndentacion(yytext());
-    if (indentacionActual > currentIndent) {
-        // Aumento de indentación
-        indentStack.push(currentIndent);
-        currentIndent = indentacionActual;
-    } else if (indentacionActual < currentIndent) {
-        // Dedentación
-        while (indentacionActual < currentIndent) {
-            currentIndent = indentStack.pop();
-            contador++;
-            dedentTokens.add(new Token(BloqueCodigo.DEDENT, "BloqueCodigo", "", yyline, yychar));
-        }
-    }
-    contador++;
-    saltoLinea = true;
+            { contador++;
+    if(!saltoLinea){
+        lex=false;
     return new Token(BloqueCodigo.NEWLINE, "BloqueCodigo", yytext(), yyline, yychar);
+    }
             }
             // fall through
           case 20: break;
@@ -781,62 +752,65 @@ void dedentTokens() {
             // fall through
           case 22: break;
           case 6:
-            { contador++; return new Token(2, yytext(),yyline, yychar);
+            { contador++; lex=true; saltoLinea = false; return new Token(2, yytext(),yyline, yychar);
             }
             // fall through
           case 23: break;
           case 7:
-            { contador++; return new Token(4, yytext(), yyline, yychar);
+            { contador++; lex=true; saltoLinea = false; return new Token(4, yytext(), yyline, yychar);
             }
             // fall through
           case 24: break;
           case 8:
-            { contador++; saltoLinea=false; return new Token(Constante.INT, yytext(), "Constante", yyline, yychar);
+            { contador++; lex=true; saltoLinea=false; return new Token(Constante.INT,  "Constante",yytext(), yyline, yychar);
             }
             // fall through
           case 25: break;
           case 9:
-            { contador++; return new Token(3, yytext(),yyline, yychar);
+            { contador++; lex=true; saltoLinea = false; return new Token(3, yytext(),yyline, yychar);
             }
             // fall through
           case 26: break;
           case 10:
-            { contador++; saltoLinea=false; return new Token(0, yytext(), yyline, yychar);
+            { contador++; lex=true; saltoLinea=false; return new Token(0, yytext(), yyline, yychar);
             }
             // fall through
           case 27: break;
           case 11:
-            { contador++; saltoLinea=false; return new Token(Constante.ID, "Constante", yytext(), yyline, yychar);
+            { contador++; lex=true; saltoLinea=false; return new Token(Constante.ID, "Constante", yytext(), yyline, yychar);
             }
             // fall through
           case 28: break;
           case 12:
-            { contador++; saltoLinea=false; return new Token(Constante.STRING, "Constante", yytext(), yyline, yychar);
+            { contador++; lex=true; saltoLinea=false; return new Token(Constante.STRING, "Constante", yytext(), yyline, yychar);
             }
             // fall through
           case 29: break;
           case 13:
-            { /* Ignore comentarios con salto de línea */
+            { /* Ignore comentarios con salto de línea */ 
+if(lex){       
+    return new Token(BloqueCodigo.NEWLINE, "BloqueCodigo", yytext(), yyline, yychar);
+}
             }
             // fall through
           case 30: break;
           case 14:
-            { contador++; saltoLinea=false; return  new Token(Constante.STRING, "Constante", yytext(), yyline, yychar);
+            { contador++; lex=true; saltoLinea=false; return  new Token(Constante.STRING, "Constante", yytext(), yyline, yychar);
             }
             // fall through
           case 31: break;
           case 15:
-            { contador++; return new Token(1, yytext(),yyline, yychar);
+            { contador++; lex=true; saltoLinea = false; return new Token(1, yytext(),yyline, yychar);
             }
             // fall through
           case 32: break;
           case 16:
-            { contador++; return new Token(6, yytext(),yyline,yychar);
+            { contador++; lex=true; saltoLinea = false; return new Token(6, yytext(),yyline,yychar);
             }
             // fall through
           case 33: break;
           case 17:
-            { contador++; saltoLinea=false; return new Token(Constante.DOUBLE, "Constante", yytext(), yyline, yychar);
+            { contador++; lex=true; saltoLinea=false; return new Token(Constante.DOUBLE, "Constante", yytext(), yyline, yychar);
             }
             // fall through
           case 34: break;
