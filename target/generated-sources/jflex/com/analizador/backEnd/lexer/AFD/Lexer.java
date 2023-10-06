@@ -789,7 +789,7 @@ int contarIndentacion(String texto) {
           case 13:
             { /* Ignore comentarios con salto de línea */ 
 if(lex){       
-    return new Token(BloqueCodigo.NEWLINE, "BloqueCodigo", yytext(), yyline, yychar);
+    return new Token(BloqueCodigo.NEWLINE, "BloqueCodigo", "\n", yyline, yychar);
 }
             }
             // fall through
