@@ -100,6 +100,14 @@ public class ArrayIntParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_init; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof ArrayIntListener ) ((ArrayIntListener)listener).enterInit(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof ArrayIntListener ) ((ArrayIntListener)listener).exitInit(this);
+		}
 	}
 
 	public final InitContext init() throws RecognitionException {
@@ -154,6 +162,14 @@ public class ArrayIntParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_value; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof ArrayIntListener ) ((ArrayIntListener)listener).enterValue(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof ArrayIntListener ) ((ArrayIntListener)listener).exitValue(this);
+		}
 	}
 
 	public final ValueContext value() throws RecognitionException {

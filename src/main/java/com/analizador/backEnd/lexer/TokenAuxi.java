@@ -17,7 +17,7 @@ public class TokenAuxi {
             Keyword keyword = Keyword.probandoKW(lexeme);
                 if (keyword != null) {
                     
-                    token.setClaseToken("keyword");
+                    token.setClaseToken("Keyword");
                     token.setTokenType(keyword);
                 } else {
 
