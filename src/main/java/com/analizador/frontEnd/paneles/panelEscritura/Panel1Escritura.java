@@ -1,4 +1,4 @@
-package com.analizador.frontEnd;
+package com.analizador.frontEnd.paneles.panelEscritura;
 
 import javax.swing.*;
 import javax.swing.text.BadLocationException;
@@ -12,6 +12,7 @@ import java.awt.event.AdjustmentListener;
 
 public class Panel1Escritura extends JPanel {
 
+    /// panel que recibe texto o se escribe texto 
     private static JTextPane textAreaImput;
 
     public Panel1Escritura() {
@@ -31,7 +32,7 @@ public class Panel1Escritura extends JPanel {
 
         // Agregar el JScrollPane al panel
         this.add(scrollPane);
-        this.setBounds(50, 30, 500, 370);
+        this.setBounds(50, 30, 500, 550);
         this.setVisible(true);
 
     }

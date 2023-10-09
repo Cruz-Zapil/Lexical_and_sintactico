@@ -1,4 +1,4 @@
-package com.analizador.frontEnd;
+package com.analizador.frontEnd.paneles.panelGrafico;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -18,9 +18,9 @@ import com.analizador.frontEnd.compnents.Item;
 import com.analizador.frontEnd.graficos.InicioGrafico;
 import java.awt.Image;
 
-public class Panel2Auxi extends JPanel {
+public class AuxiGrafico extends JPanel {
 
-    public Panel2Auxi() {
+    public AuxiGrafico() {
 
         this.setLayout(new BorderLayout());
 
@@ -123,6 +123,6 @@ class SubItemActionListener implements ActionListener {
         // Realizar la acción deseada con el subítem seleccionado
         // JOptionPane.showMessageDialog(null, "Has seleccionado: " + subItem);
         new InicioGrafico().insertar(subItem);
-        ((Panel2Auxi) panelAuxi).cargarImagen(LogicaArchivos.lecturaGraficos+"/"+subItem + ".jpg");
+        ((AuxiGrafico) panelAuxi).cargarImagen(LogicaArchivos.lecturaGraficos+"/"+subItem + ".jpg");
     }
 }
