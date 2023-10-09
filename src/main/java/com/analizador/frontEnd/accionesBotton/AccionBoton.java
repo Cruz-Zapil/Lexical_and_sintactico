@@ -1,29 +1,26 @@
 package com.analizador.frontEnd.accionesBotton;
 
+import java.awt.Dialog;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
-import java.io.Reader;
-import java.io.StringReader;
 
 import javax.swing.JOptionPane;
 import com.analizador.frontEnd.accionesBotton.utils.LogicaArchivos;
-import com.analizador.backEnd.lexer.Token;
-import com.analizador.backEnd.lexer.AFD.Lexer;
+import com.analizador.frontEnd.accionesBotton.utils.Message;
 import com.analizador.backEnd.lexer.almacenamieto.ListaEnlazada;
-import com.analizador.backEnd.lexer.dictionary.Constante;
-import com.analizador.backEnd.parser.model.Raiz;
-import com.analizador.frontEnd.Panel1;
-import com.analizador.frontEnd.Panel1Escritura;
-import com.analizador.frontEnd.Panel2;
 import com.analizador.frontEnd.VentanPrincipal;
 import com.analizador.frontEnd.compnents.ConstructorBotton;
+import com.analizador.frontEnd.paneles.panelEscritura.Panel1;
+import com.analizador.frontEnd.paneles.panelEscritura.Panel1Escritura;
+import com.analizador.frontEnd.paneles.panelGrafico.PanelGrafico;
+import com.analizador.frontEnd.paneles.panelReporte.PanelReporte;
 
 public class AccionBoton implements java.awt.event.ActionListener {
 
     private Panel1 panel1 = new Panel1();
-    private Panel2 panel2 = new Panel2();
-
-    ListaEnlazada listaTokens = new ListaEnlazada();
+    private PanelGrafico panelGrafico = new PanelGrafico();
+    private PanelReporte panelReporte ;
+    private ListaEnlazada listaTokens;
 
     @Override
     public void actionPerformed(ActionEvent event) {
@@ -44,7 +41,7 @@ public class AccionBoton implements java.awt.event.ActionListener {
                 LogicaArchivos logicaArchivos = new LogicaArchivos();
                 String rutaCarpeta = logicaArchivos.obtenerRutaCarpeta();
                 if (rutaCarpeta != null) {
-                    VentanPrincipal.addPanel(panel2);
+                    VentanPrincipal.addPanelIzquiedo(panelGrafico);
                     LogicaArchivos.lecturaGraficos = rutaCarpeta;
                 } else {
                     JOptionPane.showMessageDialog(null, "Seleccione una carpeta para guardar los graficos");
@@ -52,14 +49,11 @@ public class AccionBoton implements java.awt.event.ActionListener {
 
             } else if (botones.getText().equals("Play")) {
                 /// boton para obtener texto en TextPane
-
-                System.out.println("Play");
-
                 try {
-                    conectarLexer(Panel1Escritura.getText());
+                    listaTokens = new ConectarLexer().conectarLexer(Panel1Escritura.getText());
+                    Message.mostrarMensajeInfo("Texto Leido...", "Info.");
                 } catch (IOException e) {
-
-                    System.out.println("error en conectar lexer");
+                    Message.mostrarConfirmacion(e, "Error");
                     e.printStackTrace();
                 }
 
@@ -67,11 +61,20 @@ public class AccionBoton implements java.awt.event.ActionListener {
                 /// limpiar
                 Panel1Escritura.setText("");
             } else if (botones.getText().equals("Ayuda")) {
-
+                /// ayuda
                 System.out.println(" help");
             } else if (botones.getText().equals("Acerca")) {
                 System.out.println(" acerda de");
 
+            } else if (botones.getText().equals("Tabla")) {
+                System.out.println(" mostra tabla ");
+                /// conectar con tabla
+                VentanPrincipal.addPanelDerecho(panelReporte =  new PanelReporte());
+                if (listaTokens!= null) {
+                }else {
+                    Message.mostrarMensajeError(" Error no tiene Tokens", "ERROR!!");
+                    
+                }
             }
         }
     }
@@ -90,64 +93,12 @@ public class AccionBoton implements java.awt.event.ActionListener {
 
         if (choice == 0) {
             // Acción para "Abrir Archivo"
-            VentanPrincipal.addPanel(panel1);
+            VentanPrincipal.addPanelIzquiedo(panel1);
             Panel1Escritura.setText(new LogicaArchivos().fileChoser());
         } else if (choice == 1) {
             // Acción para "Nuevo"
-            VentanPrincipal.addPanel(panel1);
+            VentanPrincipal.addPanelIzquiedo(panel1);
         }
     }
 
-    /// conectar con mi automata finito determinista
-
-    public void conectarLexer(String codigo) throws IOException {
-
-        if (codigo != null) {
-
-            Reader extraerTexto = new StringReader(codigo);
-
-            Lexer lexer = new Lexer(extraerTexto);
-            Token token = lexer.yylex();
-
-            while (token.getTokenType() != Constante.EOF) {
-
-                /// almacenar tokens
-
-                listaTokens.insertarAlFinal(token);
-
-                System.out.println(" en lista: " + listaTokens.getUtltimo());
-
-                token = lexer.yylex();
-
-            }
-            /// insertamos el token final de archivo
-            listaTokens.insertarAlFinal(token);
-
-            // eliminar saltos
-            
-
-            /// llamanos funcion raiz
-            ///new Raiz().scanRaiz(listaTokens);
-
-
-        } else {
-
-            System.out.println("no hay texto");
-        }
-
-        /// conectar con la siguente face...
-    }
-
-    /// eliminar saltos de linea
-
-    public void eliminarSaltos() {
-        Token token = listaTokens.getUtltimo();
-
-        while (token.getTokenType() != Constante.EOF) {
-
-            token = listaTokens.getSiguiente();
-            System.out.println(token.getLexeme());
-
-        }
-    }
 }

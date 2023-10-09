@@ -20,7 +20,7 @@
 
   <!-- especificar las dependecias a usar con este proyecto -->
 
-  <dependencies>
+  <dependencies>  
 
   <dependency> 
     <groupId>org.antlr</groupId> 
@@ -41,8 +41,6 @@
       <artifactId>picocli</artifactId>
       <version>4.7.5</version>
     </dependency>
-
-
 
   </dependencies>
 

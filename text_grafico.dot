@@ -1,0 +1,11 @@
+digraph grafica{
+rankdir=LR;
+node [shape = ellipse, style=filled, fillcolor=seashell2];
+nodo1[label=" "];
+nodo2[label="n"];
+nodo3[label="o"];
+nodo4[label="t", style=filled, fillcolor=lightblue, shape=ellipse];
+nodo3->nodo4
+nodo2->nodo3
+nodo1->nodo2
+}
