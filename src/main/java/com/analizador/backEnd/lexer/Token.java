@@ -1,17 +1,18 @@
 package com.analizador.backEnd.lexer;
 
-public class Token<Token extends Enum<Token>> {
+public class Token<TokenType extends Enum<TokenType>> {
 
-    private Token tokenType;
+    private TokenType tokenType;
     private String lexeme;
     private int line;
     private long charBegin;
+
     private int type;
     private String claseToken;
     private int nivelIdent;
 
     /// Constructores
-    public Token(Token tokenType, String claseToken, String lexeme, int line, long charBegin) {
+    public Token(TokenType tokenType, String claseToken, String lexeme, int line, long charBegin) {
         this.tokenType = tokenType;
         this.lexeme = lexeme;
         this.line = line;
@@ -29,7 +30,7 @@ public class Token<Token extends Enum<Token>> {
 
     }
 
-    public Token(Token tokenType, int nivelIdent, String lexeme, int line, long charBegin) {
+    public Token(TokenType tokenType, int nivelIdent, String lexeme, int line, long charBegin) {
 
         this.tokenType = tokenType;
         this.nivelIdent = nivelIdent;
@@ -45,7 +46,7 @@ public class Token<Token extends Enum<Token>> {
 
     //// getters and setters
 
-    public Token getTokenType() {
+    public TokenType getTokenType() {
         return tokenType;
     }
 
@@ -57,7 +58,7 @@ public class Token<Token extends Enum<Token>> {
         this.claseToken = claseToken;
     }
 
-    public void setTokenType(Token token) {
+    public void setTokenType(TokenType token) {
         this.tokenType = token;
     }
 
@@ -90,6 +91,15 @@ public class Token<Token extends Enum<Token>> {
 
         return "Token [tokenType=" + claseToken + "." + tokenType + ", lexeme=" + lexemeWithEscapedNewlines +
                 ", line=" + line + ", charBegin=" + charBegin + "]";
+    }
+
+
+    public int getNivelIdent() {
+        return nivelIdent;
+    }
+
+    public void setNivelIdent(int nivelIdent) {
+        this.nivelIdent = nivelIdent;
     }
 
 }

@@ -2,11 +2,11 @@ package com.analizador.backEnd.lexer.almacenamieto;
 
 import com.analizador.backEnd.lexer.Token;
 
-public class ListaEnlazada {
+public class ListaEnlazadaBloque {
     private Nodo primero;
     private Nodo ultimo;
 
-    public ListaEnlazada() {
+    public ListaEnlazadaBloque() {
         this.primero = null;
         this.ultimo = null;
     }
