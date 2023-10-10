@@ -28,6 +28,7 @@ public class PanelReporte extends JPanel {
 
     private JMenuBar menuBar;
     private JMenu archivoMenu;
+    private AccionMenu accionMenu = new AccionMenu();
 
     public PanelReporte() {
 
@@ -65,12 +66,8 @@ public class PanelReporte extends JPanel {
         for (String dato : datosLeidos) {
             JMenuItem item = new JMenuItem(dato);
             item.setFont(new Font("Arial", Font.PLAIN, 14));
-            item.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    // Agrega aquí la lógica para manejar la selección del elemento de menú
-                    JOptionPane.showMessageDialog(null, "Seleccionaste: " + dato);
-                }
-            });
+
+            item.addActionListener(accionMenu);
             archivoMenu.add(item);
         }
 

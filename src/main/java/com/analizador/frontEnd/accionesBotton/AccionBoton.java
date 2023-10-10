@@ -2,6 +2,7 @@ package com.analizador.frontEnd.accionesBotton;
 
 import java.awt.Dialog;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import javax.swing.JOptionPane;
@@ -15,11 +16,11 @@ import com.analizador.frontEnd.paneles.panelEscritura.Panel1Escritura;
 import com.analizador.frontEnd.paneles.panelGrafico.PanelGrafico;
 import com.analizador.frontEnd.paneles.panelReporte.PanelReporte;
 
-public class AccionBoton implements java.awt.event.ActionListener {
+public class AccionBoton implements ActionListener {
 
     private Panel1 panel1 = new Panel1();
     private PanelGrafico panelGrafico = new PanelGrafico();
-    private PanelReporte panelReporte ;
+    private PanelReporte panelReporte;
     private ListaEnlazada listaTokens;
 
     @Override
