@@ -51,8 +51,9 @@ public class AccionBoton implements ActionListener {
             } else if (botones.getText().equals("Play")) {
                 /// boton para obtener texto en TextPane
                 try {
+
                     listaTokens = new ConectarLexer().conectarLexer(Panel1Escritura.getText());
-                    Message.mostrarMensajeInfo("Texto Leido...", "Info.");
+                    Message.mostrarMensajeInfo("Texto Leido... Puede ver en Tabla", "Info.");
                 } catch (IOException e) {
                     Message.mostrarConfirmacion(e, "Error");
                     e.printStackTrace();
@@ -70,8 +71,8 @@ public class AccionBoton implements ActionListener {
             } else if (botones.getText().equals("Tabla")) {
                 System.out.println(" mostra tabla ");
                 /// conectar con tabla
-                VentanPrincipal.addPanelDerecho(panelReporte =  new PanelReporte());
                 if (listaTokens!= null) {
+                    VentanPrincipal.addPanelDerecho(panelReporte =  new PanelReporte());
                 }else {
                     Message.mostrarMensajeError(" Error no tiene Tokens", "ERROR!!");
                     

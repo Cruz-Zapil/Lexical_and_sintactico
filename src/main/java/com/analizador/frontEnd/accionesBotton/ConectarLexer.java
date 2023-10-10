@@ -12,6 +12,8 @@ import com.analizador.frontEnd.accionesBotton.utils.Message;
 
 public class ConectarLexer {
 
+    /// tabla general
+    /// crear una tabla por bloque de codigo 
     private ListaEnlazada listaTokens = new ListaEnlazada();
 
     public ListaEnlazada conectarLexer(String codigo) throws IOException {

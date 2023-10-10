@@ -47,12 +47,11 @@ public class PanelReporte extends JPanel {
         // border
         menuBar.setBorder(new LineBorder(Color.BLACK, 1));
         // color
-        menuBar.setBackground(new Color( 173, 216, 230));
+        menuBar.setBackground(new Color(173, 216, 230));
 
         archivoMenu = new JMenu("Lista de Codigo");
         archivoMenu.setFont(new Font("Arial", Font.PLAIN, 14));
 
-    
         menuBar.add(archivoMenu);
         menuBar.setBounds(25, 30, 250, 30);
         recorer();
@@ -60,11 +59,19 @@ public class PanelReporte extends JPanel {
     }
 
     public void recorer() {
+        /// crear objeto item
+        JMenuItem item;
+        /// agregar una lista a mi tabla
+        item =  new JMenuItem("Tabla Golbal");
+        item.addActionListener(accionMenu);
+        archivoMenu.add(item);
 
         ArrayList<String> datosLeidos = leerArchivo();
 
         for (String dato : datosLeidos) {
-            JMenuItem item = new JMenuItem(dato);
+
+             item = new JMenuItem(dato);
+
             item.setFont(new Font("Arial", Font.PLAIN, 14));
 
             item.addActionListener(accionMenu);
@@ -72,10 +79,9 @@ public class PanelReporte extends JPanel {
         }
 
         // Refresca la barra de menú
-        menuBar.updateUI();
-    }
+     
 
-
+    
     /// lista para mi menu
 
     private ArrayList<String> leerArchivo() {
