@@ -30,6 +30,7 @@ public class AuxiGrafico extends JPanel {
     }
 
     public void setcomponentes1() {
+
         JComboBox<Item> comboBox = new JComboBox<>(createItems());
         comboBox.setRenderer(new ItemListRenderer());
         comboBox.addActionListener(new ItemSelectionListener(comboBox, this));
@@ -82,6 +83,7 @@ public class AuxiGrafico extends JPanel {
 }
 
 class ItemSelectionListener implements ActionListener {
+    
     private JComboBox<Item> comboBox;
 
     private JPanel panelAuxi;

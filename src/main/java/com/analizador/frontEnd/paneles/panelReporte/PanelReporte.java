@@ -5,9 +5,9 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -24,6 +24,11 @@ public class PanelReporte extends JPanel {
     //// panel de lot text area
     public static DefaultTableModel model;
 
+    /// menu
+
+    private JMenuBar menuBar;
+    private JMenu archivoMenu;
+
     public PanelReporte() {
 
         this.setBackground(new Color(245, 245, 220));
@@ -32,8 +37,57 @@ public class PanelReporte extends JPanel {
         this.setBorder(new LineBorder(Color.BLACK, 1)); // Establece un borde al panel
 
         agregrarTabla();
-        agregarMenu();
+        inicializarMenu();
 
+    }
+
+    private void inicializarMenu() {
+        menuBar = new JMenuBar();
+        // border
+        menuBar.setBorder(new LineBorder(Color.BLACK, 1));
+        // color
+        menuBar.setBackground(new Color( 173, 216, 230));
+
+        archivoMenu = new JMenu("Lista de Codigo");
+        archivoMenu.setFont(new Font("Arial", Font.PLAIN, 14));
+
+    
+        menuBar.add(archivoMenu);
+        menuBar.setBounds(25, 30, 250, 30);
+        recorer();
+        this.add(menuBar);
+    }
+
+    public void recorer() {
+
+        ArrayList<String> datosLeidos = leerArchivo();
+
+        for (String dato : datosLeidos) {
+            JMenuItem item = new JMenuItem(dato);
+            item.setFont(new Font("Arial", Font.PLAIN, 14));
+            item.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    // Agrega aquí la lógica para manejar la selección del elemento de menú
+                    JOptionPane.showMessageDialog(null, "Seleccionaste: " + dato);
+                }
+            });
+            archivoMenu.add(item);
+        }
+
+        // Refresca la barra de menú
+        menuBar.updateUI();
+    }
+
+
+    /// lista para mi menu
+
+    private ArrayList<String> leerArchivo() {
+        // Simula la lectura de un archivo y devuelve los datos como una lista
+        ArrayList<String> datos = new ArrayList<>();
+        datos.add("Item 1");
+        datos.add("Item 2");
+        datos.add("Item 3");
+        return datos;
     }
 
     public void agregrarTabla() {
@@ -62,46 +116,6 @@ public class PanelReporte extends JPanel {
         scrollPane.setBounds(25, 100, 550, 475);
 
         this.add(scrollPane);
-    }
-
-    public void agregarMenu() {
-        JMenuBar menuBar = new JMenuBar();
-        JMenu archivoMenu = new JMenu("Archivo");
-
-        archivoMenu.setFont(new Font("Arial", Font.PLAIN, 14)); // Fuente simple
-        archivoMenu.setForeground(Color.BLACK); // Texto en color negro
-        archivoMenu.setBorderPainted(true); // Elimina el borde
-        archivoMenu.setIcon(new ImageIcon("icono.png")); // Icono simplificado
-        archivoMenu.setBackground(new Color(210, 180, 140)); // Fondo con el color deseado
-        archivoMenu.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1)); // Borde con el color y grosor deseado
-
-        JMenuItem abrirMenuItem = new JMenuItem("Abrir");
-        abrirMenuItem.setFont(new Font("Arial", Font.PLAIN, 14)); // Fuente simple
-        abrirMenuItem.setForeground(Color.BLACK); // Texto en color negro
-        abrirMenuItem.setIcon(new ImageIcon("icono_abrir.png")); // Icono simplificado
-
-        JMenuItem guardarMenuItem = new JMenuItem("Guardar");
-
-        abrirMenuItem.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Agregar la lógica para abrir un archivo aquí
-                JOptionPane.showMessageDialog(null, "Abrir archivo...");
-            }
-        });
-
-        guardarMenuItem.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Agregar la lógica para guardar datos aquí
-                JOptionPane.showMessageDialog(null, "Guardar datos...");
-            }
-        });
-
-        archivoMenu.add(abrirMenuItem);
-        archivoMenu.add(guardarMenuItem);
-
-        menuBar.add(archivoMenu);
-        menuBar.setBounds(25, 30, 550, 25);
-        this.add(menuBar);
     }
 
     public static void agregarDatos() {
