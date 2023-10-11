@@ -1,0 +1,131 @@
+programa ::= (importacion | definicion_clase | funcion | sentencia)*
+
+importacion ::= "import" modulos
+
+modulos ::= modulo ("," modulo)*
+
+modulo ::= identificador ("as" identificador)?
+
+definicion_clase ::= "class" identificador (":" herencia)? ":" (sentencia_clase)*
+
+herencia ::= "(" identificador ("," identificador)* ")"
+
+sentencia_clase ::= (decorador)* (identificador | metodo | propiedad)
+
+decorador ::= "@" identificador ("(" (expresion ("," expresion)*)? ")")?
+
+metodo ::= identificador "(" parametros ")" ":" bloque
+
+parametros ::= parametro ("," parametro)*
+
+parametro ::= identificador (":" tipo)? ("=" expresion)?
+
+tipo ::= identificador ("[" tipo "]")?
+
+propiedad ::= identificador ":" tipo
+
+funcion ::= "def" identificador "(" parametros ")" ("->" tipo)? ":" bloque
+
+sentencia ::= (expresion | asignacion | sentencia_condicional | sentencia_bucle | sentencia_control_flujo | sentencia_importacion | sentencia_try_except | sentencia_with | sentencia_pasa | sentencia_return | sentencia_yield | sentencia_assert | sentencia_global | sentencia_no_local)*
+
+asignacion ::= expresion (":=" expresion)?
+
+sentencia_condicional ::= "if" expresion ":" bloque ("elif" expresion ":" bloque)* ("else" ":" bloque)?
+
+sentencia_bucle ::= ("while" expresion ":" bloque | "for" identificador "in" expresion ":" bloque)
+
+sentencia_control_flujo ::= ("break" | "continue" | "pass")
+
+sentencia_importacion ::= importacion | importacion "as" identificador
+
+sentencia_try_except ::= "try" ":" bloque ("except" excepcion ":" bloque)+ ("finally" ":" bloque)?
+
+sentencia_with ::= "with" expresion (":" bloque | "as" identificador ":" bloque)
+
+sentencia_pasa ::= "pass"
+
+sentencia_return ::= "return" (expresion)?
+
+sentencia_yield ::= "yield" (expresion)?
+
+sentencia_assert ::= "assert" expresion ("," expresion)?
+
+sentencia_global ::= "global" identificador ("," identificador)*
+
+sentencia_no_local ::= "nonlocal" identificador ("," identificador)*
+
+expresion ::= expresion_logica
+
+expresion_logica ::= expresion_or ("or" expresion_or)*
+
+expresion_or ::= expresion_and ("and" expresion_and)*
+
+expresion_and ::= expresion_not ("and" expresion_not)*
+
+expresion_not ::= ("not" expresion_not)* expresion_relacional
+
+expresion_relacional ::= expresion_aditiva (comparador expresion_aditiva)?
+
+comparador ::= "==" | "!=" | "<" | ">" | "<=" | ">="
+
+expresion_aditiva ::= expresion_aditiva "+" expresion_multiplicativa
+                 | expresion_aditiva "-" expresion_multiplicativa
+                 | expresion_multiplicativa
+
+expresion_multiplicativa ::= expresion_multiplicativa "*" factor_primario
+                       | expresion_multiplicativa "/" factor_primario
+                       | expresion_multiplicativa "//" factor_primario
+                       | expresion_multiplicativa "%" factor_primario
+                       | factor_primario
+
+factor_primario ::= identificador
+                | literal
+                | llamada_funcion
+                | acceso_atributo
+                | acceso_indice
+                | expresion_generador
+                | expresion_comprension_lista
+                | expresion_comprension_diccionario
+                | "(" expresion ")"
+                | "[" lista_elementos "]"
+                | "{" diccionario_elementos "}"
+
+lista_elementos ::= expresion ("," expresion)*
+
+diccionario_elementos ::= expresion ":" expresion ("," expresion ":" expresion)*
+
+
+literal ::= cadena
+        | numero
+        | booleano
+        | None
+
+cadena ::= '"' .*? '"'
+       | "'" .*? "'"
+
+numero ::= entero
+        | flotante
+
+entero ::= [0-9]+
+
+flotante ::= [0-9]+ "." [0-9]*
+
+booleano ::= "True" | "False"
+
+llamada_funcion ::= identificador "(" argumentos ")"
+
+argumentos ::= expresion ("," expresion)*
+
+acceso_atributo ::= expresion "." identificador
+
+acceso_indice ::= expresion "[" expresion "]"
+
+expresion_generador ::= "(" expresion for identificador "in" expresion ")"
+
+expresion_comprension_lista ::= "[" expresion for identificador "in" expresion (if expresion)? "]"
+
+expresion_comprension_diccionario ::= "{" expresion ":" expresion for identificador "in" expresion (if expresion)? "}"
+
+identificador ::= [a-zA-Z_][a-zA-Z0-9_]*
+
+bloque ::= (sentencia)*
