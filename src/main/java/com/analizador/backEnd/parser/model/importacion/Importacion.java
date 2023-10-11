@@ -1,6 +1,7 @@
 package com.analizador.backEnd.parser.model.importacion;
 
 import com.analizador.backEnd.lexer.Token;
+import com.analizador.backEnd.lexer.almacenamieto.ListaEnlazada;
 import com.analizador.backEnd.parser.model.Raiz;
 
 public class Importacion {
@@ -9,29 +10,21 @@ public class Importacion {
     Modulos modulos = new Modulos();
     boolean pila = true;
     Token lexema;
+    int poscionToken;
 
-    public boolean scanImport(Token lexema, Raiz raiz) {
+    public boolean scanImport(Token lexema, Raiz raiz, ListaEnlazada listaLexema) {
 
-        /// solicitar siguente lexema
-        /// se envia el siguente lexema
         while (pila) {
 
-            if (pila) {
                 /// solicitar lexema
-                this.lexema = lexema;
+                this.lexema = listaLexema.eliminarPrimero();
+              //  System.out.println(" deber ir un id: "+ this.lexema.getLexeme());              
 
-            }
-
-            if (!modulos.scanModulos(this.lexema, this)) {
+            if (!modulos.scanModulos(this.lexema, this, listaLexema)) {
                 /// solicitar siguente lexema
-                pila = false;
-
-                System.out.println(" hay problemas");
+                return  false;
             }
         }
-
         return false;
-
     }
-
 }

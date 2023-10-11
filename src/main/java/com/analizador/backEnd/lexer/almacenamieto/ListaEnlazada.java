@@ -1,5 +1,8 @@
 package com.analizador.backEnd.lexer.almacenamieto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.analizador.backEnd.lexer.Token;
 
 public class ListaEnlazada {
@@ -24,14 +27,15 @@ public class ListaEnlazada {
 
     public Token eliminarAlFinal() {
         if (ultimo == null) {
+            System.out.println(" error ya no hay mas lexemas");
             return null;
         } else if (primero == ultimo) {
-            Token valor = ultimo.getValor();
+            Token valor = ultimo.getLexema();
             primero = null;
             ultimo = null;
             return valor;
         } else if (primero.getSiguiente() == ultimo) {
-            Token valor = ultimo.getValor();
+            Token valor = ultimo.getLexema();
             primero.setSiguiente(null);
             ultimo = primero;
             return valor;
@@ -41,46 +45,70 @@ public class ListaEnlazada {
             while (nodoActual.getSiguiente() != ultimo) {
                 nodoActual = nodoActual.getSiguiente();
             }
-            Token valor = ultimo.getValor();
+            Token valor = ultimo.getLexema();
             nodoActual.setSiguiente(null);
             ultimo = nodoActual;
             return valor;
         }
     }
 
-    public void eliminarAlFinal1() {
-        if (ultimo == null) {
-            System.out.println(" Erroooooor : ya no hay mas objetos");
-        } else if (primero == ultimo) {
-            primero = null;
-            ultimo = null;
-
-        } else {
-            Nodo nodoActual = primero;
-            while (nodoActual.getSiguiente() != ultimo) {
-                nodoActual = nodoActual.getSiguiente();
-            }
-            nodoActual.setSiguiente(null);
-            ultimo = nodoActual;
-
-        }
-    }
-
-    public Token obtenerUltimo() {
+    public Token getUtltimo() {
         if (ultimo == null) {
             return null;
         } else {
-            return ultimo.getValor();
+            return ultimo.getLexema();
         }
     }
 
     public Nodo getPrimero() {
         if (primero == null) {
             return null;
-        }else {
+        } else {
 
             return primero;
         }
+    }
+
+    public Token eliminarPrimero() {
+        if (primero == null) {
+            System.out.println("Error: La lista está vacía");
+            return null;
+        } else {
+            Token valor = primero.getLexema();
+            primero = primero.getSiguiente();
+            if (primero == null) {
+                ultimo = null; // Si la lista queda vacía después de eliminar el primero, también se actualiza
+                               // 'ultimo'
+            }
+            return valor;
+        }
+    }
+
+    public Token getSiguiente() {
+        if (primero == null || primero.getSiguiente() == null) {
+            // Si la lista está vacía o solo hay un elemento, no hay siguiente
+            System.out.println(" lista vacia ");
+            return null;
+        } else {
+            return primero.getSiguiente().getLexema();
+        }
+    }
+
+
+
+    public List<Token> getDatos() {
+        List<Token> datos = new ArrayList<>();
+        Nodo nodoActual = primero; // Comenzamos desde el primer nodo (cabeza)
+        
+        while (nodoActual != null) {
+            // Agregar el valor del nodo actual a la lista de datos
+            datos.add(nodoActual.getLexema());
+
+            // Mover al siguiente nodo
+            nodoActual = nodoActual.getSiguiente();
+        }
+
+        return datos;
     }
 
 }

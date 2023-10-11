@@ -7,17 +7,17 @@ public class Nodo {
 
     private Token lexema;
     private Nodo siguiente;
-
+    
     public Nodo(Token lexema) {
         this.lexema = lexema;
         this.siguiente = null;
     }
 
-    public Token getValor() {
+    public Token getLexema() {
         return lexema;
     }
 
-    public void setValor(Token valor) {
+    public void setLexema(Token valor) {
         this.lexema= lexema;
     }
 

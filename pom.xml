@@ -20,7 +20,13 @@
 
   <!-- especificar las dependecias a usar con este proyecto -->
 
-  <dependencies>
+  <dependencies>  
+
+  <dependency> 
+    <groupId>org.antlr</groupId> 
+    <artifactId>antlr4</artifactId> 
+    <version>4.3</version> 
+  </dependency>
 
 
     <dependency>
@@ -35,8 +41,6 @@
       <artifactId>picocli</artifactId>
       <version>4.7.5</version>
     </dependency>
-
-
 
   </dependencies>
 
@@ -55,8 +59,22 @@
           <release>17</release>
         </configuration>
       </plugin>
-
-
+    
+      <plugin>
+        <groupId>org.antlr</groupId>
+        <artifactId>antlr4-maven-plugin</artifactId>
+        <version>4.3</version>
+        <executions>
+          <execution>
+            <id>antlr</id>
+            <phase>generated-sources</phase>
+            <goals>
+              <goal>antlr4</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    
       <plugin>
         <groupId>de.jflex</groupId>
         <artifactId>jflex-maven-plugin</artifactId>
@@ -93,7 +111,6 @@
           </execution>
         </executions>
       </plugin>
-
 
     </plugins>
   </build>
