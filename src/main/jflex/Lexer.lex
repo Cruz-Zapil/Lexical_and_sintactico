@@ -80,7 +80,8 @@ if(lex){
     contador++;
     if(!saltoLinea){
         lex=false;
-    return new Token(BloqueCodigo.NEWLINE, "BloqueCodigo", yytext(), yyline, yychar);
+        saltoLinea=true;
+    return new Token(BloqueCodigo.NEWLINE, "BloqueCodigo", "\\n", yyline, yychar);
     }
 }
 
@@ -89,7 +90,7 @@ if(lex){
     if(!saltoLinea){
     int indentacionActual = contarIndentacion(yytext());
     contador++;
-    return new Token(BloqueCodigo.IDENTACION, indentacionActual, yytext(), yyline, yychar);
+    return new Token(BloqueCodigo.IDENTACION, indentacionActual, "\"    \"", yyline, yychar);
     }
 }
 
@@ -125,5 +126,5 @@ if(lex){
     contador++;
     saltoLinea = false;
     lex=true;
-    return new Token(Constante.SIMBOLO_NO_RECONOCIDO, "null", yytext(), yyline, yychar);
+    return new Token(Constante.ErrorLexico, "null", yytext(), yyline, yychar);
 }

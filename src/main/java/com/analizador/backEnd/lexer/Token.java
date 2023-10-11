@@ -13,8 +13,16 @@ public class Token<TokenType extends Enum<TokenType>> {
 
     /// Constructores
     public Token(TokenType tokenType, String claseToken, String lexeme, int line, long charBegin) {
-        this.tokenType = tokenType;
+
+        /*
+        if (lexeme.equals("\n")) {
+            String lexemeWithEscapedNewlines = lexeme.replace("\n", "\\n");   
+            this.lexeme = lexemeWithEscapedNewlines;        
+        }else {
+        }       
+        */
         this.lexeme = lexeme;
+        this.tokenType = tokenType;
         this.line = line;
         this.charBegin = charBegin;
         this.claseToken = claseToken;

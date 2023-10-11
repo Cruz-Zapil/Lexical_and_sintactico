@@ -1,8 +1,10 @@
 package com.analizador.backEnd.lexer.almacenamieto;
 
 public class NodoBloque {
+
+
     private ListaEnlazada subLista; // Referencia a otra lista enlazada
-    private Nodo siguiente;
+    private NodoBloque siguiente;
 
     public NodoBloque() {
         this.subLista = new ListaEnlazada(); // Inicializa la sublista enlazada
@@ -13,11 +15,12 @@ public class NodoBloque {
         return subLista;
     }
 
-    public Nodo getSiguiente() {
+    public NodoBloque getSiguiente() {
         return siguiente;
     }
 
-    public void setSiguiente(Nodo siguiente) {
+    public void setSiguiente(NodoBloque siguiente) {
         this.siguiente = siguiente;
     }
+
 }

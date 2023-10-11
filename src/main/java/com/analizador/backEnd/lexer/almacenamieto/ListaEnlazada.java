@@ -69,6 +69,8 @@ public class ListaEnlazada {
         }
     }
 
+    /// obtener el primero y eliminala de la lista
+
     public Token eliminarPrimero() {
         if (primero == null) {
             System.out.println("Error: La lista está vacía");

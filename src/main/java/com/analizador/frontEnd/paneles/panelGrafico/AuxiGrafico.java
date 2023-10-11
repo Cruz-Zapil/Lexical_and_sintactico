@@ -86,6 +86,7 @@ class ItemSelectionListener implements ActionListener {
     
     private JComboBox<Item> comboBox;
 
+
     private JPanel panelAuxi;
 
     public ItemSelectionListener(JComboBox<Item> comboBox, JPanel panelAuxi) {
@@ -109,6 +110,16 @@ class ItemSelectionListener implements ActionListener {
             popupMenu.show(source, 0, source.getHeight());
         }
     }
+
+
+    public JComboBox<Item> getComboBox() {
+        return comboBox;
+    }
+
+    public void setComboBox(JComboBox<Item> comboBox) {
+        this.comboBox = comboBox;
+    }
+
 }
 
 class SubItemActionListener implements ActionListener {
