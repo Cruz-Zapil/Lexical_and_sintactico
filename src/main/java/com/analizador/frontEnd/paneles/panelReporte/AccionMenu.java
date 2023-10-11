@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JMenuItem;
-
 import com.analizador.frontEnd.accionesBotton.utils.Message;
 
 public class AccionMenu implements ActionListener {
@@ -16,15 +15,20 @@ public class AccionMenu implements ActionListener {
 
         if (fuente instanceof JMenuItem) {
 
+            
+
             JMenuItem item = (JMenuItem) event.getSource();
             
             if (item.getText().equals("Tabla Global")) {
+                
+             PanelReporte.agregarDatosGlobal();
 
-                Message.mostrarMensajeInfo(" es una tabla", " que tal ");
             } else {
                 Message.mostrarMensajeInfo(" no es una tabla blogal ¡", " kjasñdfj");
             }
 
+        }else {
+            Message.mostrarMensajeInfo(" hoalñ"," else ");
         }
     }
 

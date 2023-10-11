@@ -102,4 +102,20 @@ public class Token<TokenType extends Enum<TokenType>> {
         this.nivelIdent = nivelIdent;
     }
 
+    public int getLine() {
+        return line;
+    }
+
+    public void setLine(int line) {
+        this.line = line;
+    }
+
+    public long getCharBegin() {
+        return charBegin;
+    }
+
+    public void setCharBegin(long charBegin) {
+        this.charBegin = charBegin;
+    }
+
 }

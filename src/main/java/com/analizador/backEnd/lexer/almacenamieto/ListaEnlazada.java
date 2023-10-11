@@ -1,5 +1,8 @@
 package com.analizador.backEnd.lexer.almacenamieto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.analizador.backEnd.lexer.Token;
 
 public class ListaEnlazada {
@@ -91,5 +94,21 @@ public class ListaEnlazada {
         }
     }
 
+
+
+    public List<Token> getDatos() {
+        List<Token> datos = new ArrayList<>();
+        Nodo nodoActual = primero; // Comenzamos desde el primer nodo (cabeza)
+        
+        while (nodoActual != null) {
+            // Agregar el valor del nodo actual a la lista de datos
+            datos.add(nodoActual.getLexema());
+
+            // Mover al siguiente nodo
+            nodoActual = nodoActual.getSiguiente();
+        }
+
+        return datos;
+    }
 
 }
