@@ -19,7 +19,7 @@ public class AccionBoton implements ActionListener {
 
     private Panel1 panel1 = new Panel1();
     private PanelGrafico panelGrafico = new PanelGrafico();
-    private PanelReporte panelReporte;
+    
     private ListaEnlazada listaTokens;
 
     @Override
@@ -72,7 +72,8 @@ public class AccionBoton implements ActionListener {
                 /// conectar con tabla
 
                 if (listaTokens!= null) {
-                    VentanPrincipal.addPanelDerecho(panelReporte =  new PanelReporte( listaTokens));
+                    PanelReporte panelReporte =  new PanelReporte( listaTokens);
+                    VentanPrincipal.addPanelDerecho(panelReporte);
                 }else {
                     Message.mostrarMensajeError(" Error no tiene Tokens", "ERROR!!");
                     

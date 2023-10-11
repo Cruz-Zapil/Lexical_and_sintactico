@@ -7,6 +7,7 @@ public enum Constante {
     STRING,//("String"),
     CHAR,//("char"),
     ID,//("id"),
-    EOF, SIMBOLO_NO_RECONOCIDO;//("EOF");
+    ErrorLexico,
+    EOF;//("EOF");
         
 }

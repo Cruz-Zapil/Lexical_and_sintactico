@@ -13,7 +13,7 @@ public class Parametro {
         switch (estado) {
             case 0:
 
-                if (lexema.getLexeme().equals(Constante.ID)) {
+                if (lexema.getTokenType().equals(Constante.ID)) {
                     estado++;
                     return true;
                 }
@@ -21,8 +21,7 @@ public class Parametro {
 
             case 1:
 
-
-                if (lexema.getLexeme().equals(Delimitador.DOS_PUNTOS)) {
+                if (lexema.getTokenType().equals(Delimitador.DOS_PUNTOS)) {
                     estado++;
                     return true;
                 }
@@ -30,7 +29,7 @@ public class Parametro {
 
             case 2:
 
-                if (lexema.getLexeme().equals(Constante.ID)) {
+                if (lexema.getTokenType().equals(Constante.ID)) {
                     estado++;
                     return true;
                 }

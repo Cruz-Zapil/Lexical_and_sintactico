@@ -2,7 +2,6 @@ package com.analizador.backEnd.parser.model;
 
 import com.analizador.backEnd.lexer.Token;
 import com.analizador.backEnd.lexer.almacenamieto.ListaEnlazada;
-import com.analizador.backEnd.lexer.almacenamieto.Nodo;
 import com.analizador.backEnd.lexer.dictionary.Constante;
 import com.analizador.backEnd.lexer.dictionary.concatenables.Keyword;
 import com.analizador.backEnd.parser.model.clase.Clase;
@@ -74,7 +73,7 @@ public class Raiz {
 
                         funcion = true;
 
-                    } else if (lexema.getLexeme().equals(Constante.ID)) {
+                    } else if (lexema.getTokenType().equals(Constante.ID)) {
                         /// se nececista arreglar esto
                         System.out.println(" puede que sea una sentencia de variables");
 

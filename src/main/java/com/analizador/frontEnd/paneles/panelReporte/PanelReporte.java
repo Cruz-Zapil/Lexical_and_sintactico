@@ -101,7 +101,7 @@ public class PanelReporte extends JPanel {
         model = new DefaultTableModel();
         model.addColumn("Simbolo");
         model.addColumn("Tipo");
-        model.addColumn("Valor");
+     //  model.addColumn("Valor");
         model.addColumn("Linea");
         model.addColumn("Columna");
 
@@ -130,7 +130,7 @@ public class PanelReporte extends JPanel {
        
         for (Token dato : listaToken.getDatos()) {
 
-            model.addRow(new Object[] {dato.getLexeme(),dato.getTokenType(), dato.getLine(), dato.getCharBegin()});
+            model.addRow(new Object[] {dato.getLexeme(),dato.getTokenType() ,dato.getLine(), dato.getCharBegin()});
         }
         Message.mostrarMensajeInfo("Se mostraron todos los datos ", " Informacion:");
 

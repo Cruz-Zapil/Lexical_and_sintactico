@@ -15,6 +15,8 @@ public class ConectarLexer {
     /// tabla general
     /// crear una tabla por bloque de codigo 
     private ListaEnlazada listaTokens = new ListaEnlazada();
+    private ListaEnlazada listaErrorLexico = new ListaEnlazada();
+    
 
     public ListaEnlazada conectarLexer(String codigo) throws IOException {
 
@@ -25,15 +27,23 @@ public class ConectarLexer {
 
             while (token.getTokenType() != Constante.EOF) {
 
-                listaTokens.insertarAlFinal(token);
-                token = lexer.yylex();
+                if (token.getTokenType() != Constante.ErrorLexico) {
+                    
+                    listaTokens.insertarAlFinal(token);
+                    token = lexer.yylex();
+                }else {
+                    listaErrorLexico.insertarAlFinal(token);
+                    token= lexer.yylex();
+                }
+
 
             }
             /// insertamos el token final de archivo que es EOF
             listaTokens.insertarAlFinal(token);
+            listaErrorLexico.insertarAlFinal(token);
 
         } else {
-            Message.mostrarMensajeError("La entrada de texto esta vacia", " Error!!");
+            Message.mostrarMensajeError("La entrada de texto esta vacia", " Error!!!");
         }
 
         return listaTokens;

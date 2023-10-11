@@ -42,7 +42,7 @@ public class Panel1Escritura extends JPanel {
         sourceScrollPane.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener() {
             @Override
             public void adjustmentValueChanged(AdjustmentEvent e) {
-                int value = e.getValue();
+               // int value = e.getValue();
                 targetTextArea1.scrollRectToVisible(new Rectangle(targetTextArea1.getSize()));
 
             }
