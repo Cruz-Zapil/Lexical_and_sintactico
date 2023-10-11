@@ -3,21 +3,22 @@ package com.analizador.frontEnd.paneles.panelReporte;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+
+import com.analizador.backEnd.lexer.Token;
+import com.analizador.backEnd.lexer.almacenamieto.ListaEnlazada;
+import com.analizador.frontEnd.accionesBotton.utils.Message;
 
 public class PanelReporte extends JPanel {
 
@@ -29,8 +30,11 @@ public class PanelReporte extends JPanel {
     private JMenuBar menuBar;
     private JMenu archivoMenu;
     private AccionMenu accionMenu = new AccionMenu();
+    private static ListaEnlazada listaToken;
 
-    public PanelReporte() {
+    public PanelReporte(ListaEnlazada listaToken) {
+
+        PanelReporte.listaToken = listaToken;
 
         this.setBackground(new Color(245, 245, 220));
         this.setBounds(0, 0, 600, 660);
@@ -62,7 +66,7 @@ public class PanelReporte extends JPanel {
         /// crear objeto item
         JMenuItem item;
         /// agregar una lista a mi tabla
-        item =  new JMenuItem("Tabla Golbal");
+        item =  new JMenuItem("Tabla Global");
         item.addActionListener(accionMenu);
         archivoMenu.add(item);
 
@@ -79,7 +83,7 @@ public class PanelReporte extends JPanel {
         }
 
         // Refresca la barra de menú
-     
+    }
 
     
     /// lista para mi menu
@@ -121,12 +125,14 @@ public class PanelReporte extends JPanel {
         this.add(scrollPane);
     }
 
-    public static void agregarDatos() {
 
-        //// agregar datos
-        model.addRow(new Object[] { "Juan", 25 });
-        model.addRow(new Object[] { "María", 30 });
-        model.addRow(new Object[] { "Carlos", 22 });
+    public static void agregarDatosGlobal(){
+       
+        for (Token dato : listaToken.getDatos()) {
+
+            model.addRow(new Object[] {dato.getLexeme(),dato.getTokenType(), dato.getLine(), dato.getCharBegin()});
+        }
+        Message.mostrarMensajeInfo("Se mostraron todos los datos ", " Informacion:");
 
     }
 

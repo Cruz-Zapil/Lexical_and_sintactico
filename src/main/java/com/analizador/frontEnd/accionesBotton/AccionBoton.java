@@ -1,6 +1,5 @@
 package com.analizador.frontEnd.accionesBotton;
 
-import java.awt.Dialog;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -71,8 +70,9 @@ public class AccionBoton implements ActionListener {
             } else if (botones.getText().equals("Tabla")) {
                 System.out.println(" mostra tabla ");
                 /// conectar con tabla
+
                 if (listaTokens!= null) {
-                    VentanPrincipal.addPanelDerecho(panelReporte =  new PanelReporte());
+                    VentanPrincipal.addPanelDerecho(panelReporte =  new PanelReporte( listaTokens));
                 }else {
                     Message.mostrarMensajeError(" Error no tiene Tokens", "ERROR!!");
                     

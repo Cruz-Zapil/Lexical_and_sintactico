@@ -7,7 +7,7 @@ public class Nodo {
 
     private Token lexema;
     private Nodo siguiente;
-
+    
     public Nodo(Token lexema) {
         this.lexema = lexema;
         this.siguiente = null;
