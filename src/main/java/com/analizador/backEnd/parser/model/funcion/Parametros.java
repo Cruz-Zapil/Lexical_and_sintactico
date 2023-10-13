@@ -11,37 +11,31 @@ public class Parametros {
     int estado = 0;
     Token lexema;
 
-    public boolean scanParametros(Token lexema, ListaEnlazada listLexema) {
+    public void scanParametros(Token lexema, ListaEnlazada listLexema) {
 
-       // this.lexema = lexema;
+        // this.lexema = lexema;
+        if (!listLexema.getSiguiente().getTokenType().equals(Delimitador.PARENTESIS_CIERRE)) {
 
-        while (pila) {
+            while (pila) {
 
-            if (lexema.getTokenType().equals(Constante.ID) && estado ==0 ) {
+                this.lexema = listLexema.eliminarPrimero();
 
-                if (listLexema.getSiguiente().getTokenType().equals(Delimitador.COMA)) {
-                    this.lexema = listLexema.eliminarPrimero();
-                    this.lexema= listLexema.eliminarPrimero();
-                    estado=1;    
-                                  
+                if (this.lexema.getTokenType().equals(Constante.ID)) {
+
+                    if (listLexema.getSiguiente().getTokenType().equals(Delimitador.COMA)) {
+                        listLexema.eliminarAlFinal();
+                    } else {
+                        /// se detiene el ciclo
+                        pila = false;
+                    }
+
                 } else {
-                    return false;
+                    System.out.println(" error sintactico se esperaba un ID");
                 }
-
-                if (lexema.getTokenType().equals(Constante.ID)) {
-                    estado=0;                    
-                }else{
-                    System.out.println(" sintasis error se esperaba id ");
-                    return false;
-                }
-
-            } else  {
-                return false;
-
             }
+        } else {
+            System.out.println(" se econtro un parentesis vacio toca regresar");
         }
-
-        return false;
     }
 
 }

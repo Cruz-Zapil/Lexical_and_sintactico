@@ -710,7 +710,7 @@ int contarIndentacion(String texto) {
 
       if (zzInput == YYEOF && zzStartRead == zzCurrentPos) {
         zzAtEOF = true;
-          {     return new Token(Constante.EOF, null, null, yyline, yychar);
+          {     return new Token<Constante>(Constante.EOF, null, null, yyline, yychar);
  }
       }
       else {
@@ -719,7 +719,7 @@ int contarIndentacion(String texto) {
             { contador++;
     saltoLinea = false;
     lex=true;
-    return new Token(Constante.ErrorLexico, "null", yytext(), yyline, yychar);
+    return new Token<Constante>(Constante.ErrorLexico, "null", yytext(), yyline, yychar);
             }
             // fall through
           case 19: break;
@@ -727,17 +727,17 @@ int contarIndentacion(String texto) {
             { if(!saltoLinea){
     int indentacionActual = contarIndentacion(yytext());
     contador++;
-    return new Token(BloqueCodigo.IDENTACION, indentacionActual, yytext(), yyline, yychar);
+    return new Token<BloqueCodigo>(BloqueCodigo.IDENTACION, indentacionActual, yytext(), yyline, yychar);
     }
             }
             // fall through
           case 20: break;
           case 3:
-            { contador++;
-    if(!saltoLinea){
+            { if(!saltoLinea){
+    contador++;
         lex=false;
         saltoLinea=true;
-    return new Token(BloqueCodigo.NEWLINE, "BloqueCodigo", "\\n", yyline, yychar);
+    return new Token<BloqueCodigo>(BloqueCodigo.NEWLINE, "BloqueCodigo", "\\n", yyline, yychar);
     }
             }
             // fall through
@@ -763,7 +763,7 @@ int contarIndentacion(String texto) {
             // fall through
           case 25: break;
           case 8:
-            { contador++; lex=true; saltoLinea=false; return new Token(Constante.INT,  "Constante",yytext(), yyline, yychar);
+            { contador++; lex=true; saltoLinea=false; return new Token<Constante>(Constante.INT,  "Constante",yytext(), yyline, yychar);
             }
             // fall through
           case 26: break;
@@ -778,25 +778,28 @@ int contarIndentacion(String texto) {
             // fall through
           case 28: break;
           case 11:
-            { contador++; lex=true; saltoLinea=false; return new Token(Constante.ID, "Constante", yytext(), yyline, yychar);
+            { contador++; lex=true; saltoLinea=false; return new Token<Constante>(Constante.ID, "Constante", yytext(), yyline, yychar);
             }
             // fall through
           case 29: break;
           case 12:
-            { contador++; lex=true; saltoLinea=false; return new Token(Constante.STRING, "Constante", yytext(), yyline, yychar);
+            { contador++; lex=true; saltoLinea=false; return new Token<Constante>(Constante.STRING, "Constante", yytext(), yyline, yychar);
             }
             // fall through
           case 30: break;
           case 13:
             { /* Ignore comentarios con salto de línea */ 
-if(lex){       
-    return new Token(BloqueCodigo.NEWLINE, "BloqueCodigo", "\n", yyline, yychar);
+if(lex){
+    saltoLinea=true;
+    contador++;
+    lex=false; 
+    return new Token<BloqueCodigo>(BloqueCodigo.NEWLINE, "BloqueCodigo", "-----", yyline, yychar);
 }
             }
             // fall through
           case 31: break;
           case 14:
-            { contador++; lex=true; saltoLinea=false; return  new Token(Constante.STRING, "Constante", yytext(), yyline, yychar);
+            { contador++; lex=true; saltoLinea=false; return  new Token<Constante>(Constante.STRING, "Constante", yytext(), yyline, yychar);
             }
             // fall through
           case 32: break;
@@ -811,7 +814,7 @@ if(lex){
             // fall through
           case 34: break;
           case 17:
-            { contador++; lex=true; saltoLinea=false; return new Token(Constante.DOUBLE, "Constante", yytext(), yyline, yychar);
+            { contador++; lex=true; saltoLinea=false; return new Token<Constante>(Constante.DOUBLE, "Constante", yytext(), yyline, yychar);
             }
             // fall through
           case 35: break;
@@ -819,7 +822,7 @@ if(lex){
             { if(!saltoLinea){
     int indentacionActual = contarIndentacion(yytext());
     contador++;
-    return new Token(BloqueCodigo.IDENTACION, indentacionActual, "\"    \"", yyline, yychar);
+    return new Token<BloqueCodigo>(BloqueCodigo.IDENTACION, indentacionActual, "\"    \"", yyline, yychar);
     }
             }
             // fall through
