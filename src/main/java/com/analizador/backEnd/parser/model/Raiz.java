@@ -7,13 +7,11 @@ import com.analizador.backEnd.lexer.dictionary.concatenables.Keyword;
 import com.analizador.backEnd.parser.model.clase.Clase;
 import com.analizador.backEnd.parser.model.funcion.Funciondef;
 import com.analizador.backEnd.parser.model.importacion.Importacion;
-import com.analizador.backEnd.parser.model.sentencia.Sentencia;
-import com.analizador.backEnd.parser.model.sentenciaVaraible.SentenciaV;
+import com.analizador.backEnd.parser.model.sentencia.RaizSentencia;
 
 public class Raiz {
 
     /// parar el ciclo
-
     boolean enCiclo = true;
 
     ListaEnlazada lista = new ListaEnlazada();
@@ -27,10 +25,9 @@ public class Raiz {
 
     Importacion importacionClass = new Importacion();
     Funciondef funcionCalss = new Funciondef();
-    Sentencia sentenciaClass = new Sentencia();
+    RaizSentencia sentenciaClass = new RaizSentencia();
     Clase claseClass = new Clase();
 
-    SentenciaV sentenciaVClass = new SentenciaV();
 
     public void scanRaiz(ListaEnlazada listaLexema) {
 
@@ -54,7 +51,7 @@ public class Raiz {
                         /// siguente lexema
                         importacion = true;
 
-                        if (!importacionClass.scanImport(lexema, this, lista)) {
+                        if (!importacionClass.scanImport(lexema,  lista)) {
                             importacionClass = new Importacion();
                             importacion = false;
                         }
@@ -77,7 +74,7 @@ public class Raiz {
                         /// se nececista arreglar esto
                         System.out.println(" puede que sea una sentencia de variables");
 
-                        sentenciaVClass.scanSentenciaV(lexema, this);
+                      //  sentenciaVClass.scanSentenciaV(lexema, this);
 
                         sentenciaV = true;
 
@@ -93,7 +90,7 @@ public class Raiz {
 
                             System.out.println("--- import: " + lexema.getLexeme() + "-------");
 
-                            if (!importacionClass.scanImport(lexema, this, lista)) {
+                            if (!importacionClass.scanImport(lexema,  lista)) {
                                 importacionClass = new Importacion();
                                 importacion = false;
                             }
@@ -102,7 +99,7 @@ public class Raiz {
 
                     } else if (sentencia == true) {
 
-                        sentenciaClass.scanSentencia(lexema, this);
+                        sentenciaClass.scanSentencia(lexema, listaLexema);
 
                     } else if (funcion == true) {
 
@@ -124,7 +121,7 @@ public class Raiz {
                         claseClass.scanClase(lexema, this, lista);
 
                     } else if (sentenciaV == true) {
-                        sentenciaClass.scanSentencia(lexema, this);
+                        sentenciaClass.scanSentencia(lexema, listaLexema);
                     }
 
                 }

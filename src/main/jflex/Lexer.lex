@@ -43,7 +43,7 @@ int contarIndentacion(String texto) {
 %init}
 
 %eofval{
-    return new Token(Constante.EOF, null, null, yyline, yychar);
+    return new Token<Constante>(Constante.EOF, null, null, yyline, yychar);
 %eofval}
 
 %line
@@ -59,8 +59,11 @@ letter = [a-zA-Z]
 
 "#".* { /* Ignore comentarios */ }
 "#".*[\n] { /* Ignore comentarios con salto de línea */ 
-if(lex){       
-    return new Token(BloqueCodigo.NEWLINE, "BloqueCodigo", "\n", yyline, yychar);
+if(lex){
+    saltoLinea=true;
+    contador++;
+    lex=false; 
+    return new Token<BloqueCodigo>(BloqueCodigo.NEWLINE, "BloqueCodigo", "\\n", yyline, yychar);
 }
 }
 
@@ -68,20 +71,20 @@ if(lex){
 {letter}+ {contador++; lex=true; saltoLinea=false; return new Token(0, yytext(), yyline, yychar);}
 
 // Tokens de constantes
-[_a-zA-Z][_a-zA-Z0-9]* {contador++; lex=true; saltoLinea=false; return new Token(Constante.ID, "Constante", yytext(), yyline, yychar);}
-{digit}+ {contador++; lex=true; saltoLinea=false; return new Token(Constante.INT,  "Constante",yytext(), yyline, yychar);}
-"\""[^\n]*"\"" {contador++; lex=true; saltoLinea=false; return new Token(Constante.STRING, "Constante", yytext(), yyline, yychar);}
-"\'"[^\n]*"\'" {contador++; lex=true; saltoLinea=false; return  new Token(Constante.STRING, "Constante", yytext(), yyline, yychar);}
-{digit}+"."{digit}+ {contador++; lex=true; saltoLinea=false; return new Token(Constante.DOUBLE, "Constante", yytext(), yyline, yychar);}
+[_a-zA-Z][_a-zA-Z0-9]* {contador++; lex=true; saltoLinea=false; return new Token<Constante>(Constante.ID, "Constante", yytext(), yyline, yychar);}
+{digit}+ {contador++; lex=true; saltoLinea=false; return new Token<Constante>(Constante.INT,  "Constante",yytext(), yyline, yychar);}
+"\""[^\n]*"\"" {contador++; lex=true; saltoLinea=false; return new Token<Constante>(Constante.STRING, "Constante", yytext(), yyline, yychar);}
+"\'"[^\n]*"\'" {contador++; lex=true; saltoLinea=false; return  new Token<Constante>(Constante.STRING, "Constante", yytext(), yyline, yychar);}
+{digit}+"."{digit}+ {contador++; lex=true; saltoLinea=false; return new Token<Constante>(Constante.DOUBLE, "Constante", yytext(), yyline, yychar);}
 
 // Tokens de bloque de código
 
 ("\n"|"\r\n") {
-    contador++;
     if(!saltoLinea){
+    contador++;
         lex=false;
         saltoLinea=true;
-    return new Token(BloqueCodigo.NEWLINE, "BloqueCodigo", "\\n", yyline, yychar);
+    return new Token<BloqueCodigo>(BloqueCodigo.NEWLINE, "BloqueCodigo", "\\n", yyline, yychar);
     }
 }
 
@@ -90,7 +93,7 @@ if(lex){
     if(!saltoLinea){
     int indentacionActual = contarIndentacion(yytext());
     contador++;
-    return new Token(BloqueCodigo.IDENTACION, indentacionActual, "\"    \"", yyline, yychar);
+    return new Token<BloqueCodigo>(BloqueCodigo.IDENTACION, indentacionActual, "\"    \"", yyline, yychar);
     }
 }
 
@@ -98,7 +101,7 @@ if(lex){
      if(!saltoLinea){
     int indentacionActual = contarIndentacion(yytext());
     contador++;
-    return new Token(BloqueCodigo.IDENTACION, indentacionActual, yytext(), yyline, yychar);
+    return new Token<BloqueCodigo>(BloqueCodigo.IDENTACION, indentacionActual, yytext(), yyline, yychar);
     }
 }
 
@@ -126,5 +129,5 @@ if(lex){
     contador++;
     saltoLinea = false;
     lex=true;
-    return new Token(Constante.ErrorLexico, "null", yytext(), yyline, yychar);
+    return new Token<Constante>(Constante.ErrorLexico, "null", yytext(), yyline, yychar);
 }

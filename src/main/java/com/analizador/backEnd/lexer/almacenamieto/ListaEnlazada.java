@@ -113,4 +113,9 @@ public class ListaEnlazada {
         return datos;
     }
 
+    public boolean estaVacia() {
+        return primero == null;
+    }
+    
+
 }

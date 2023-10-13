@@ -1,7 +1,5 @@
 package com.analizador.backEnd.parser.model.funcion;
 
-import org.stringtemplate.v4.compiler.CodeGenerator.region_return;
-
 import com.analizador.backEnd.lexer.Token;
 import com.analizador.backEnd.lexer.almacenamieto.ListaEnlazada;
 import com.analizador.backEnd.lexer.dictionary.Constante;
@@ -30,21 +28,18 @@ public class Funciondef {
             /// analicisi de abierto
             if (!this.lexema.getTokenType().equals(Delimitador.PARENTESIS_ABIERTO)) {
                 System.out.println(" error de sintaxys");
+                /// desapilarlo y seguir con el siguente
             }
 
-            //// parametros
-
-            this.lexema = listLexer.eliminarPrimero();
+            //// enviar parametros parametros
             parametros.scanParametros(this.lexema, listLexer);
 
             //// analisis de cierre
             this.lexema = listLexer.eliminarPrimero();
-
             System.out.println(" se espera ): " + this.lexema.getLexeme());
 
             if (!this.lexema.getTokenType().equals(Delimitador.PARENTESIS_CIERRE)) {
                 System.out.println(" error de sitaxys");
-
             }
 
             /// obtener dos puntos
@@ -52,12 +47,7 @@ public class Funciondef {
             System.out.println(" se espera :: " + this.lexema.getLexeme());
             if (this.lexema.getTokenType().equals(Delimitador.DOS_PUNTOS)) {
 
-                //// viene bloque se coniecta con bloque:
-                if (!bloque.secanBloque(this.lexema, listLexer)) {
-
-                    return false;
-
-                }
+                conectarBloque(listLexer);
 
             } else {
                 System.out.println(" error de sintaxys");
@@ -69,6 +59,17 @@ public class Funciondef {
         }
 
         return false;
+    }
+
+    /// conectar con bloque
+
+    public void conectarBloque(ListaEnlazada listLexer) {
+
+        //// viene bloque se coniecta con bloque:
+        if (!bloque.secanBloque( listLexer)) {
+            
+        }
+
     }
 
 }

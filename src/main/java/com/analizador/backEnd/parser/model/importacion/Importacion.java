@@ -2,7 +2,6 @@ package com.analizador.backEnd.parser.model.importacion;
 
 import com.analizador.backEnd.lexer.Token;
 import com.analizador.backEnd.lexer.almacenamieto.ListaEnlazada;
-import com.analizador.backEnd.parser.model.Raiz;
 
 public class Importacion {
 
@@ -12,7 +11,7 @@ public class Importacion {
     Token lexema;
     int poscionToken;
 
-    public boolean scanImport(Token lexema, Raiz raiz, ListaEnlazada listaLexema) {
+    public boolean scanImport(Token lexema,  ListaEnlazada listaLexema) {
 
         while (pila) {
 

@@ -3,9 +3,9 @@ package com.analizador.backEnd.lexer.dictionary.concatenables;
 public enum OperadorAsignacion {
 
     ASIGNACION("="),
-    SUMA("+="),
-    RESTA("-="),
-    MULTIPLICACION("*=");
+    ASIGNACION_SUMA("+="),
+    ASIGNACION_RESTA("-="),
+    ASIGNACION_MULTIPLICACION("*=");
 
     private String simbolo;
 
