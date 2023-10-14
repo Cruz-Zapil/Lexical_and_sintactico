@@ -10,7 +10,12 @@ public class ExpresionAnd {
 
     public boolean scanExpresionAnd(ListaEnlazada tmpListToken){
         
-        expresionNot.scanExpresionNot(tmpListToken);
+        System.out.println(" expresion and");
+        if (expresionNot.scanExpresionNot(tmpListToken)) {
+        
+            return true;
+        }
+        
 
         /// LO QUE VIENE ES UN CICLO Y UN NOT
 

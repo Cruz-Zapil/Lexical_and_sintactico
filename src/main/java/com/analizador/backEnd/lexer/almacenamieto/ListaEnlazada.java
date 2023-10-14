@@ -8,6 +8,7 @@ import com.analizador.backEnd.lexer.Token;
 public class ListaEnlazada {
     private Nodo primero;
     private Nodo ultimo;
+    private Nodo nodoActual;
 
     public ListaEnlazada() {
         this.primero = null;
@@ -116,6 +117,32 @@ public class ListaEnlazada {
     public boolean estaVacia() {
         return primero == null;
     }
+    
+    public Token getPrimerElemento() {
+        if (estaVacia()) {
+            System.out.println("La lista está vacía, no hay elementos para obtener.");
+            return null;
+        }
+    
+        return getPrimero().getLexema();
+    }
+
+
+public void reiniciarRecorrido() {
+    nodoActual = primero;
+}
+
+public Token obtenerSiguiente() {
+    if (nodoActual == null) {
+        System.out.println("La lista está vacía o no hay un siguiente token disponible.");
+        return null;
+    } else {
+        Token siguienteToken = nodoActual.getLexema();
+        nodoActual = nodoActual.getSiguiente();
+        return siguienteToken;
+    }
+}
+
     
 
 }

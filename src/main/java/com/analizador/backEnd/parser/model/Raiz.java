@@ -1,5 +1,7 @@
 package com.analizador.backEnd.parser.model;
 
+import org.antlr.v4.parse.ANTLRParser.setElement_return;
+
 import com.analizador.backEnd.lexer.Token;
 import com.analizador.backEnd.lexer.almacenamieto.ListaEnlazada;
 import com.analizador.backEnd.lexer.dictionary.Constante;
@@ -21,13 +23,10 @@ public class Raiz {
     boolean funcion = false;
     boolean clase = false;
 
-    boolean sentenciaV = false;
-
     Importacion importacionClass = new Importacion();
     Funciondef funcionCalss = new Funciondef();
     RaizSentencia sentenciaClass = new RaizSentencia();
     Clase claseClass = new Clase();
-
 
     public void scanRaiz(ListaEnlazada listaLexema) {
 
@@ -35,13 +34,12 @@ public class Raiz {
 
         while (enCiclo) {
 
-            Token lexema = lista.eliminarPrimero();
-            System.out.println("comenzar:  "+ lexema.getLexeme());
-
+            Token lexema = lista.getPrimerElemento();
+            System.out.println("comenzar:  " + lexema.getLexeme());
 
             if (lexema.getTokenType() != Constante.EOF) {
 
-                if (importacion == false && sentencia == false && sentenciaV == false && funcion == false
+                if (importacion == false && sentencia == false && funcion == false
                         && clase == false) {
 
                     if (lexema.getTokenType().equals(Keyword.IMPORT)) {
@@ -50,8 +48,8 @@ public class Raiz {
 
                         /// siguente lexema
                         importacion = true;
-
-                        if (!importacionClass.scanImport(lexema,  lista)) {
+                        lista.eliminarPrimero();
+                        if (!importacionClass.scanImport(lista)) {
                             importacionClass = new Importacion();
                             importacion = false;
                         }
@@ -63,20 +61,22 @@ public class Raiz {
 
                         System.out.println(" aqui debe ser def fucion");
 
-                        if (!funcionCalss.scanFuncionDef(lexema, this, lista)) {
+                        if (!funcionCalss.scanFuncionDef(lista)) {
                             funcionCalss = new Funciondef();
+                            lista.eliminarPrimero();
+                            funcionCalss.scanFuncionDef(lista);
                             funcion = false;
                         }
 
                         funcion = true;
 
-                    } else if (lexema.getTokenType().equals(Constante.ID)) {
+                    } else {
                         /// se nececista arreglar esto
-                        System.out.println(" puede que sea una sentencia de variables");
+                        System.out.println(" puede que sea una sentencia ");
 
-                      //  sentenciaVClass.scanSentenciaV(lexema, this);
-
-                        sentenciaV = true;
+                        // sentenciaVClass.scanSentenciaV(lexema, this);
+                        sentenciaClass.scanSentencia(listaLexema);
+                        sentencia = true;
 
                     }
 
@@ -89,8 +89,8 @@ public class Raiz {
                         if (lexema.getTokenType().equals(Keyword.IMPORT)) {
 
                             System.out.println("--- import: " + lexema.getLexeme() + "-------");
-
-                            if (!importacionClass.scanImport(lexema,  lista)) {
+                            lista.eliminarPrimero();
+                            if (!importacionClass.scanImport(lista)) {
                                 importacionClass = new Importacion();
                                 importacion = false;
                             }
@@ -99,7 +99,7 @@ public class Raiz {
 
                     } else if (sentencia == true) {
 
-                        sentenciaClass.scanSentencia(lexema, listaLexema);
+                        sentenciaClass.scanSentencia(listaLexema);
 
                     } else if (funcion == true) {
 
@@ -107,12 +107,11 @@ public class Raiz {
 
                             System.out.println(" aqui debe ser def fucion");
                             funcion = true;
-
-                            if (!funcionCalss.scanFuncionDef(lexema, this, lista)) {
+                            lista.eliminarPrimero();
+                            if (!funcionCalss.scanFuncionDef(lista)) {
                                 funcionCalss = new Funciondef();
                                 funcion = false;
                             }
-
 
                         }
 
@@ -120,8 +119,8 @@ public class Raiz {
 
                         claseClass.scanClase(lexema, this, lista);
 
-                    } else if (sentenciaV == true) {
-                        sentenciaClass.scanSentencia(lexema, listaLexema);
+                    } else if (sentencia == true) {
+                        sentenciaClass.scanSentencia( listaLexema);
                     }
 
                 }
@@ -135,6 +134,5 @@ public class Raiz {
         }
 
     }
-
 
 }

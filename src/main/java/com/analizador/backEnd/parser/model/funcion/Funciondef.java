@@ -4,7 +4,6 @@ import com.analizador.backEnd.lexer.Token;
 import com.analizador.backEnd.lexer.almacenamieto.ListaEnlazada;
 import com.analizador.backEnd.lexer.dictionary.Constante;
 import com.analizador.backEnd.lexer.dictionary.simples.Delimitador;
-import com.analizador.backEnd.parser.model.Raiz;
 
 public class Funciondef {
 
@@ -14,7 +13,7 @@ public class Funciondef {
     boolean pila = true;
     Token lexema;
 
-    public boolean scanFuncionDef(Token lexema, Raiz Raiz, ListaEnlazada listLexer) {
+    public boolean scanFuncionDef( ListaEnlazada listLexer) {
 
         this.lexema = listLexer.eliminarPrimero();
         System.out.println("se espera ID: " + this.lexema.getLexeme());

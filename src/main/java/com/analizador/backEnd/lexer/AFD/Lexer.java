@@ -793,7 +793,7 @@ if(lex){
     saltoLinea=true;
     contador++;
     lex=false; 
-    return new Token<BloqueCodigo>(BloqueCodigo.NEWLINE, "BloqueCodigo", "-----", yyline, yychar);
+    return new Token<BloqueCodigo>(BloqueCodigo.NEWLINE, "BloqueCodigo", "\\n", yyline, yychar);
 }
             }
             // fall through

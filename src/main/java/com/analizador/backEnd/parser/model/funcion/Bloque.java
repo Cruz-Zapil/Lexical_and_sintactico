@@ -33,7 +33,7 @@ public class Bloque {
 
                 //// es un inicio de un bloque
                 /// conectar con raiz sentencia
-                raizSentencia.scanSentencia(this.lexema, listLexer);
+                raizSentencia.scanSentencia( listLexer);
                 
                 
                 
