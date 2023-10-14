@@ -97,12 +97,10 @@ public class ListaEnlazada {
         }
     }
 
-
-
     public List<Token> getDatos() {
         List<Token> datos = new ArrayList<>();
         Nodo nodoActual = primero; // Comenzamos desde el primer nodo (cabeza)
-        
+
         while (nodoActual != null) {
             // Agregar el valor del nodo actual a la lista de datos
             datos.add(nodoActual.getLexema());
@@ -117,20 +115,19 @@ public class ListaEnlazada {
     public boolean estaVacia() {
         return primero == null;
     }
-    
+
     public Token getPrimerElemento() {
         if (estaVacia()) {
             System.out.println("La lista está vacía, no hay elementos para obtener.");
             return null;
         }
-    
+
         return getPrimero().getLexema();
     }
 
-
-public void reiniciarRecorrido() {
-    nodoActual = primero;
-}
+    public void reiniciarRecorrido() {
+        nodoActual = primero;
+    }
 
 public Token obtenerSiguiente() {
     if (nodoActual == null) {
@@ -143,6 +140,5 @@ public Token obtenerSiguiente() {
     }
 }
 
-    
-
 }
+

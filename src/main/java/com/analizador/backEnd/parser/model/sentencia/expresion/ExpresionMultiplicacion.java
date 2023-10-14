@@ -52,9 +52,9 @@ public class ExpresionMultiplicacion {
 
                 //// ENVIAR TODOS LOS PAQUETES DE TOKENS EN LA MULTIPLICACON
                 if (!elemento.getSiguiente().getTokenType().equals(Aritmetico.MULTIPLICACION)) {
-                      if (!factorPrimario.scanFactorPrimario(tmpListToken)) {
-                    return false;
-                }
+                    if (!factorPrimario.scanFactorPrimario(tmpListToken)) {
+                        return false;
+                    }
 
                 }
 
@@ -65,9 +65,9 @@ public class ExpresionMultiplicacion {
             for (ListaEnlazada elemento : miArrayList) {
 
                 if (!elemento.getSiguiente().getTokenType().equals(Aritmetico.DIVISION)) {
-                     if (!factorPrimario.scanFactorPrimario(tmpListToken)) {
-                    return false;
-                }
+                    if (!factorPrimario.scanFactorPrimario(tmpListToken)) {
+                        return false;
+                    }
 
                 }
                 //// ENVIAR TODOS LOS PAQUETES DE TOKENS a factor primario
@@ -78,9 +78,9 @@ public class ExpresionMultiplicacion {
 
                 //// ENVIAR TODOS LOS PAQUETES DE token a factor primario
                 if (!elemento.getSiguiente().getTokenType().equals(OperadorDoble.EXPONENTE)) {
-                     if (!factorPrimario.scanFactorPrimario(tmpListToken)) {
-                    return false;
-                }
+                    if (!factorPrimario.scanFactorPrimario(tmpListToken)) {
+                        return false;
+                    }
                 }
             }
 
@@ -90,8 +90,8 @@ public class ExpresionMultiplicacion {
                 //// ENVIAR TODOS LOS PAQUETES DE TOKENS a factor primario
                 if (!elemento.getSiguiente().getTokenType().equals(Aritmetico.MODULO)) {
                     if (!factorPrimario.scanFactorPrimario(tmpListToken)) {
-                    return false;
-                }
+                        return false;
+                    }
 
                 }
             }
@@ -107,7 +107,6 @@ public class ExpresionMultiplicacion {
                 if (!factorPrimario.scanFactorPrimario(tmpListToken)) {
                     return false;
                 }
-                
 
             }
 
@@ -119,120 +118,122 @@ public class ExpresionMultiplicacion {
 
     public boolean primeraOpcion() {
         System.out.println("Primera opción");
-        
+
         boolean tmpSalto = true;
         while (tmpSalto) {
             ListaEnlazada tmplist = new ListaEnlazada();
-    
+
             // Hacer una copia temporal de la lista original
             for (Token elemento : this.tmpListToken.getDatos()) {
-                
-                if(!elemento.getTokenType().equals(Aritmetico.MULTIPLICACION)){
-                    
+
+                if (!elemento.getTokenType().equals(Aritmetico.MULTIPLICACION)) {
+
                     System.out.println(elemento.getTokenType() + " desde primera opcion de m");
-                    tmplist.insertarAlFinal(elemento);                    
-                }else {
+                    tmplist.insertarAlFinal(elemento);
+                } else {
                     ListaEnlazada a = new ListaEnlazada();
                     a.insertarAlFinal(elemento);
                     miArrayList.add(a);
                     opcicion1 = true;
                     break;
-                }                               
+                }
             }
-            tmpSalto= false;
+            tmpSalto = false;
             if (!tmplist.estaVacia()) {
                 miArrayList.add(tmplist);
-            }  
+            }
         }
         return !miArrayList.isEmpty();
     }
 
-        public boolean segundaOpcion() {
+    public boolean segundaOpcion() {
         System.out.println("Segunda opción");
-        
+
         boolean tmpSalto = true;
         while (tmpSalto) {
             ListaEnlazada tmplist = new ListaEnlazada();
-    
+
             // Hacer una copia temporal de la lista original
             for (Token elemento : this.tmpListToken.getDatos()) {
-                
-                if(!elemento.getTokenType().equals(Aritmetico.DIVISION)){
-                    
+
+                if (!elemento.getTokenType().equals(Aritmetico.DIVISION)) {
+
                     System.out.println(elemento.getTokenType() + " desde Segunda opcion de m");
-                    tmplist.insertarAlFinal(elemento);                    
-                }else {
+                    tmplist.insertarAlFinal(elemento);
+                } else {
                     ListaEnlazada a = new ListaEnlazada();
                     a.insertarAlFinal(elemento);
                     miArrayList.add(a);
                     opcicion2 = true;
                     break;
-                }                               
-            } tmpSalto= false;
+                }
+            }
+            tmpSalto = false;
             if (!tmplist.estaVacia()) {
                 miArrayList.add(tmplist);
-            }  
+            }
         }
         return !miArrayList.isEmpty();
     }
+
     public boolean terceraOpcion() {
         System.out.println("Tercera opción");
-        
+
         boolean tmpSalto = true;
         while (tmpSalto) {
             ListaEnlazada tmplist = new ListaEnlazada();
-    
+
             // Hacer una copia temporal de la lista original
             for (Token elemento : this.tmpListToken.getDatos()) {
-                
-                if(!elemento.getTokenType().equals(OperadorDoble.EXPONENTE)){
-                    
+
+                if (!elemento.getTokenType().equals(OperadorDoble.EXPONENTE)) {
+
                     System.out.println(elemento.getTokenType() + " desde tercera opcion de m");
-                    tmplist.insertarAlFinal(elemento);                    
-                }else {
+                    tmplist.insertarAlFinal(elemento);
+                } else {
                     ListaEnlazada a = new ListaEnlazada();
                     a.insertarAlFinal(elemento);
                     miArrayList.add(a);
                     opcicion3 = true;
                     break;
-                }                               
-            } tmpSalto= false;
+                }
+            }
+            tmpSalto = false;
             if (!tmplist.estaVacia()) {
                 miArrayList.add(tmplist);
-            }  
+            }
         }
         return !miArrayList.isEmpty();
     }
 
-        public boolean cuartaOpcion() {
+    public boolean cuartaOpcion() {
         System.out.println("cuarta opción");
-        
+
         boolean tmpSalto = true;
         while (tmpSalto) {
             ListaEnlazada tmplist = new ListaEnlazada();
-    
+
             // Hacer una copia temporal de la lista original
             for (Token elemento : this.tmpListToken.getDatos()) {
-                
-                if(!elemento.getTokenType().equals(Aritmetico.MODULO)){
-                    
+
+                if (!elemento.getTokenType().equals(Aritmetico.MODULO)) {
+
                     System.out.println(elemento.getTokenType() + " desde cuarta opcion de m");
-                    tmplist.insertarAlFinal(elemento);                    
-                }else {
+                    tmplist.insertarAlFinal(elemento);
+                } else {
                     ListaEnlazada a = new ListaEnlazada();
                     a.insertarAlFinal(elemento);
                     miArrayList.add(a);
                     opcicion4 = true;
                     break;
-                }                               
-            } tmpSalto= false;
+                }
+            }
+            tmpSalto = false;
             if (!tmplist.estaVacia()) {
                 miArrayList.add(tmplist);
-            }  
+            }
         }
         return !miArrayList.isEmpty();
     }
-
-
 
 }
