@@ -1,8 +1,5 @@
 package com.analizador.backEnd.parser.model.sentencia;
 
-import org.antlr.v4.parse.ANTLRParser.id_return;
-
-import com.analizador.backEnd.lexer.Token;
 import com.analizador.backEnd.lexer.almacenamieto.ListaEnlazada;
 import com.analizador.backEnd.parser.model.importacion.Importacion;
 import com.analizador.backEnd.parser.model.sentencia.expresion.ExpresionRaiz;
@@ -29,11 +26,11 @@ public class RaizSentencia {
     private SentenciaGlobal sentenciaGlobal = new SentenciaGlobal();
     private SentenciaNoLocal sentenciaNoLocal = new SentenciaNoLocal();
 
-    public void scanSentencia(Token lexema, ListaEnlazada listTokens) {
+    public void scanSentencia( ListaEnlazada listTokens) {
 
         //// se analiza en que otros nodos o ramas se va
 
-        nivelIdentacion = lexema.getNivelIdent();
+      
         tmpListTokens = listTokens;
 
         // ESTO ES UN CICLO
@@ -43,14 +40,18 @@ public class RaizSentencia {
         // PARA ACABAR CON EL CICLO
         // SE DEBERA VER LA IDENTACION
 
+
+        /*
         if (nivelIdentacion == 0) {
 
-            
         } else {
-
             System.out.println(" error sintanctico ");
         }
+        */
 
+        System.out.println( " llegamos a una scan sentencia ");
+
+        
         if (expresionRaiz.scanExpresion(nivelIdentacion, tmpListTokens)) {
 
             // se analiza si es una expresion
@@ -76,7 +77,7 @@ public class RaizSentencia {
             // se analiza si es una contrul de flujo
             listTokens = tmpListTokens;
 
-        } else if (importacion.scanImport(lexema, tmpListTokens)) {
+        } else if (importacion.scanImport( tmpListTokens)) {
 
             /// se analiz asi es una importacion
             listTokens = tmpListTokens;

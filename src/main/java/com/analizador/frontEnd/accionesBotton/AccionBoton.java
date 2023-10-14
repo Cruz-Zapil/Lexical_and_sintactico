@@ -20,7 +20,7 @@ public class AccionBoton implements ActionListener {
     private Panel1 panel1 = new Panel1();
     private PanelGrafico panelGrafico = new PanelGrafico();
     
-    private ListaEnlazada listaTokens;
+    private ListaEnlazada listaTokens = new ListaEnlazada();
 
     @Override
     public void actionPerformed(ActionEvent event) {
@@ -78,6 +78,9 @@ public class AccionBoton implements ActionListener {
                     Message.mostrarMensajeError(" Error no tiene Tokens", "ERROR!!");
                     
                 }
+            }else if(botones.getText().equals("Sintactico")){
+                System.out.println("conectar con el sintactico");
+                new ConectarSintactico().enviarAModel(listaTokens);
             }
         }
     }

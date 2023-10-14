@@ -11,7 +11,7 @@ public class Importacion {
     Token lexema;
     int poscionToken;
 
-    public boolean scanImport(Token lexema,  ListaEnlazada listaLexema) {
+    public boolean scanImport(  ListaEnlazada listaLexema) {
 
         while (pila) {
 

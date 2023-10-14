@@ -11,7 +11,12 @@ public class ExpresionLogica {
 
         ///// RECORDAR QUE ESTO ES UN CICLO
 
-        expresionOr.scanExpresionOr(tmpsListaToken);
+        System.out.println(" expresion logica ");
+        if (expresionOr.scanExpresionOr(tmpsListaToken) ) {
+       
+            return true;
+        }
+       
 
         //// LO QUE VIENE ES UN CICLO Y UN OR 
         

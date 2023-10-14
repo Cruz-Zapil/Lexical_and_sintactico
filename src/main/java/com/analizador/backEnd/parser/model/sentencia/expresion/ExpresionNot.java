@@ -1,6 +1,8 @@
 package com.analizador.backEnd.parser.model.sentencia.expresion;
 
+import com.analizador.backEnd.lexer.Token;
 import com.analizador.backEnd.lexer.almacenamieto.ListaEnlazada;
+import com.analizador.backEnd.lexer.dictionary.concatenables.Keyword;
 
 public class ExpresionNot {
 
@@ -10,11 +12,20 @@ public class ExpresionNot {
 
         /// PUEDE QUE VENGA UN NOT 
 
+        Token tmpToken = tmpListToken.getSiguiente();
+        if(tmpToken.getTokenType().equals( Keyword.NOT)){
+            tmpListToken.eliminarPrimero();
+            System.out.println(" se obtuno un not" );
+        }
 
+        System.out.println(" expresion not");
 
         /// SI NO VIENE NOT VA DIRECTO A RELACIONAL 
-    
-        expresionRelacional.scanRelacional(tmpListToken);
+        if (expresionRelacional.scanRelacional(tmpListToken)){
+            return true;
+
+        }    
+   
 
 
 

@@ -2,6 +2,8 @@ package com.analizador.backEnd.parser.model.sentencia;
 
 
 
+import org.stringtemplate.v4.compiler.CodeGenerator.region_return;
+
 import com.analizador.backEnd.lexer.Token;
 import com.analizador.backEnd.lexer.almacenamieto.ListaEnlazada;
 import com.analizador.backEnd.lexer.dictionary.concatenables.Keyword;
@@ -16,14 +18,22 @@ public class ControlFlujo {
 
         this.identacion = identacion;
 
+        this. lexema = tmpListTokens.eliminarPrimero();
+
         if (lexema.getTokenType().equals(Keyword.BREAK)) {
-            
+            System.out.println(" control de flujo 1" + lexema.getTokenType());
+            return true;            
         }else if (lexema.getTokenType().equals(Keyword.CONTINUE)){
 
+            System.out.println(" control de flujo 2" + lexema.getTokenType() );
+            return true;
         }else if (lexema.getTokenType().equals(Keyword.PASS)){
 
+            System.out.println(" control de flujo 3" + lexema.getTokenType() );
+            return true;
         }
 
+        System.out.println(" ninguno es control de flujo ");
         
         
 

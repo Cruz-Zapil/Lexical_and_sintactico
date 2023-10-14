@@ -11,14 +11,15 @@ import com.analizador.backEnd.lexer.dictionary.simples.Aritmetico;
 public class ExpresionAditiva {
 
     private ExpresionMultiplicacion expresionMultiplicacion = new ExpresionMultiplicacion();
-    private boolean aditiva = false;
-    private boolean multiplicatica = false;
+    private boolean opcicion1 = false, opcicion2 = false;
     private ArrayList<ListaEnlazada> miArrayList = new ArrayList<>();
     private ListaEnlazada tmpListToken;
 
     public void scanExpresionAditiva(ListaEnlazada tmpListToken) {
 
         this.tmpListToken = tmpListToken;
+
+        System.out.println(" expresion relacional aditiva ");
 
         /// AQUI VIENE TRES OPCIONES
 
@@ -30,41 +31,46 @@ public class ExpresionAditiva {
 
         /// O SIMPLEMENTE UN MULTIPLICATION
 
-        if (primeraOpcion()) {
+        if (primeraOpcion() && opcicion1 == true) {
+            System.out.println(" primera opcion en aditiva ");
 
             for (ListaEnlazada elemento : miArrayList) {
 
                 //// ENVIAR TODOS LOS PAQUETES DE TOKENS EN LA MULTIPLICACON
+                eliminala();
                 if (!elemento.getSiguiente().getTokenType().equals(Aritmetico.SUMA)) {
                     expresionMultiplicacion.scanExpresionMultiplicativa(elemento);
                 }
 
             }
 
-        } else if (segundaOpcion()) {
-
+        } else if (segundaOpcion() && opcicion2 == true) {
+            System.out.println(" seguanda opcion en aditiva");
+            eliminala();
             for (ListaEnlazada elemento : miArrayList) {
 
-                if(!elemento.getSiguiente().getTokenType().equals(Aritmetico.RESTA)){
-                     expresionMultiplicacion.scanExpresionMultiplicativa(elemento);
-                }            
+                if (!elemento.getSiguiente().getTokenType().equals(Aritmetico.RESTA)) {
+                    expresionMultiplicacion.scanExpresionMultiplicativa(elemento);
+                }
 
             }
 
-        } else if (terceraOpcion()) {
+        } else {
 
+            System.out.println(" ultima opion aditiva ");
+            eliminala();
             for (ListaEnlazada elemento : miArrayList) {
-                
+
                 expresionMultiplicacion.scanExpresionMultiplicativa(elemento);
             }
 
-
-            
-        } 
+        }
 
     }
 
     public boolean primeraOpcion() {
+        this.tmpListToken.reiniciarRecorrido();
+        System.out.println(" primera opcion aditiva ");
 
         boolean tmpSalto = true;
 
@@ -75,26 +81,31 @@ public class ExpresionAditiva {
 
             while (tmpSigno) {
 
-                Token tmpToken = this.tmpListToken.eliminarPrimero();
+                Token tmpToken = this.tmpListToken.obtenerSiguiente();
                 if (!tmpToken.getTokenType().equals(Aritmetico.SUMA)) {
+
                     if (!tmpToken.getTokenType().equals(BloqueCodigo.NEWLINE)
-                            || !tmpToken.getTokenType().equals(Constante.EOF)) {
+                            && !tmpToken.getTokenType().equals(Constante.EOF)) {
+                        System.out.println(tmpToken.getTokenType() + " primera opcion a");
                         tmplist.insertarAlFinal(tmpToken);
 
                     } else {
                         tmpSalto = false;
+                        tmpSigno = false;
+
                     }
                 } else {
+
                     ListaEnlazada a = new ListaEnlazada();
                     a.insertarAlFinal(tmpToken);
                     miArrayList.add(a);
+                    opcicion1 = true;
 
                     tmpSigno = false;
                 }
 
             }
             if (!tmplist.estaVacia()) {
-
                 miArrayList.add(tmplist);
             }
         }
@@ -107,6 +118,8 @@ public class ExpresionAditiva {
     }
 
     public boolean segundaOpcion() {
+        this.tmpListToken.reiniciarRecorrido();
+        System.out.println(" segudna opcion aditiva ");
 
         boolean tmpSalto = true;
 
@@ -117,19 +130,22 @@ public class ExpresionAditiva {
 
             while (tmpSigno) {
 
-                Token tmpToken = this.tmpListToken.eliminarPrimero();
+                Token tmpToken = this.tmpListToken.obtenerSiguiente();
                 if (!tmpToken.getTokenType().equals(Aritmetico.RESTA)) {
                     if (!tmpToken.getTokenType().equals(BloqueCodigo.NEWLINE)
-                            || !tmpToken.getTokenType().equals(Constante.EOF)) {
+                            && !tmpToken.getTokenType().equals(Constante.EOF)) {
+                        System.out.println(tmpToken.getTokenType() + " desde segunda opcion de a");
                         tmplist.insertarAlFinal(tmpToken);
                     } else {
                         tmpSalto = false;
+                        tmpSigno = false;
                     }
                 } else {
                     ListaEnlazada a = new ListaEnlazada();
                     a.insertarAlFinal(tmpToken);
                     miArrayList.add(a);
                     tmpSigno = false;
+                    opcicion2 = true;
                 }
 
             }
@@ -147,50 +163,57 @@ public class ExpresionAditiva {
 
     }
 
-    public boolean terceraOpcion(){
+    public void eliminala() {
+        boolean tmp= true;
+        while (tmp) {
 
-        boolean tmpSalto = true;
-
-            while (tmpSalto) {
-
-            ListaEnlazada tmplist = new ListaEnlazada();
-            Token tmpToken = this.tmpListToken.eliminarPrimero();
-            if (!tmpToken.getTokenType().equals(BloqueCodigo.NEWLINE)){
-                tmplist.insertarAlFinal(tmpToken);
-            }else {
-                break;
-            }
-
+            Token tmps = this.tmpListToken.eliminarPrimero();
             
-            if (!tmplist.estaVacia()) {
-
-                miArrayList.add(tmplist);
+            if (tmps.getTokenType().equals(BloqueCodigo.NEWLINE)) {
+                break;                
             }
         }
 
-        if (!miArrayList.isEmpty()) {
-            return true;
-        }
-        return false;
     }
 
-
-
-
-    public boolean isAditiva() {
-        return aditiva;
-    }
-
-    public void setAditiva(boolean aditiva) {
-        this.aditiva = aditiva;
-    }
-
-    public boolean isMultiplicatica() {
-        return multiplicatica;
-    }
-
-    public void setMultiplicatica(boolean multiplicatica) {
-        this.multiplicatica = multiplicatica;
-    }
+    /*
+     * 
+     * 
+     * 
+     * public boolean terceraOpcion() {
+     * 
+     * boolean tmpSalto = true;
+     * 
+     * while (tmpSalto) {
+     * 
+     * ListaEnlazada tmplist = new ListaEnlazada();
+     * Token tmpToken = this.tmpListToken.eliminarPrimero();
+     * if (!tmpToken.getTokenType().equals(BloqueCodigo.NEWLINE)) {
+     * tmplist.insertarAlFinal(tmpToken);
+     * } else {
+     * break;
+     * }
+     * 
+     * if (!tmplist.estaVacia()) {
+     * 
+     * miArrayList.add(tmplist);
+     * }
+     * }
+     * 
+     * if (!miArrayList.isEmpty()) {
+     * return true;
+     * }
+     * return false;
+     * }
+     * 
+     * public boolean isMultiplicatica() {
+     * return multiplicatica;
+     * }
+     * 
+     * public void setMultiplicatica(boolean multiplicatica) {
+     * this.multiplicatica = multiplicatica;
+     * }
+     * 
+     */
 
 }

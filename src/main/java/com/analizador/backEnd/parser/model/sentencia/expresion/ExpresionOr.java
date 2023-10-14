@@ -11,7 +11,11 @@ public class ExpresionOr {
 
         //// RECORDAR QUE ESTO ES UN CICLO
 
-        expresionAnd.scanExpresionAnd(tmpListaTokens);
+        System.out.println(" expreson or");
+        if (expresionAnd.scanExpresionAnd(tmpListaTokens)) {
+            return true;
+        }
+        
 
         // LO QUE VIENE ES UN CICLO Y UN AND
         
