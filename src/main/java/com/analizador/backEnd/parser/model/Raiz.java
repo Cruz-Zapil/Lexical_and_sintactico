@@ -72,8 +72,8 @@ public class Raiz {
 
                     } else {
                         /// se nececista arreglar esto
-                        System.out.println(" puede que sea una sentencia ");
-
+                        System.out.println(" puede que sea una sentencia lexema: " + lexema.getTokenType());
+                        
                         // sentenciaVClass.scanSentenciaV(lexema, this);
                         sentenciaClass.scanSentencia(listaLexema);
                         sentencia = true;

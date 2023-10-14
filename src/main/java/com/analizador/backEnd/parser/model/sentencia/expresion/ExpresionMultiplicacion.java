@@ -11,12 +11,10 @@ public class ExpresionMultiplicacion {
 
     private FactorPrimario factorPrimario = new FactorPrimario();
     private boolean opcicion1 = false, opcicion2 = false, opcicion3 = false, opcicion4 = false;
-    private boolean multiplicatica = false;
     private ArrayList<ListaEnlazada> miArrayList = new ArrayList<>();
     private ListaEnlazada tmpListToken;
-    private ListaEnlazada listaAuxi = new ListaEnlazada();
 
-    public void scanExpresionMultiplicativa(ListaEnlazada tmpListToken) {
+    public boolean scanExpresionMultiplicativa(ListaEnlazada tmpListToken) {
 
         System.out.println(" llegamos a expresoin multimplicacion");
 
@@ -26,7 +24,6 @@ public class ExpresionMultiplicacion {
         }
 
         this.tmpListToken = tmpListToken;
-        this.listaAuxi = tmpListToken;
 
         /// AQUI VIENE TRES OPCIONES
 
@@ -55,7 +52,9 @@ public class ExpresionMultiplicacion {
 
                 //// ENVIAR TODOS LOS PAQUETES DE TOKENS EN LA MULTIPLICACON
                 if (!elemento.getSiguiente().getTokenType().equals(Aritmetico.MULTIPLICACION)) {
-                    factorPrimario.scanFactorPrimario(elemento);
+                      if (!factorPrimario.scanFactorPrimario(tmpListToken)) {
+                    return false;
+                }
 
                 }
 
@@ -66,7 +65,9 @@ public class ExpresionMultiplicacion {
             for (ListaEnlazada elemento : miArrayList) {
 
                 if (!elemento.getSiguiente().getTokenType().equals(Aritmetico.DIVISION)) {
-                    factorPrimario.scanFactorPrimario(elemento);
+                     if (!factorPrimario.scanFactorPrimario(tmpListToken)) {
+                    return false;
+                }
 
                 }
                 //// ENVIAR TODOS LOS PAQUETES DE TOKENS a factor primario
@@ -77,7 +78,9 @@ public class ExpresionMultiplicacion {
 
                 //// ENVIAR TODOS LOS PAQUETES DE token a factor primario
                 if (!elemento.getSiguiente().getTokenType().equals(OperadorDoble.EXPONENTE)) {
-                    factorPrimario.scanFactorPrimario(elemento);
+                     if (!factorPrimario.scanFactorPrimario(tmpListToken)) {
+                    return false;
+                }
                 }
             }
 
@@ -86,7 +89,9 @@ public class ExpresionMultiplicacion {
 
                 //// ENVIAR TODOS LOS PAQUETES DE TOKENS a factor primario
                 if (!elemento.getSiguiente().getTokenType().equals(Aritmetico.MODULO)) {
-                    factorPrimario.scanFactorPrimario(elemento);
+                    if (!factorPrimario.scanFactorPrimario(tmpListToken)) {
+                    return false;
+                }
 
                 }
             }
@@ -95,16 +100,20 @@ public class ExpresionMultiplicacion {
 
             //// ENVIAR TODOS LOS PAQUETES DE TOKENS a factor primario
 
-            System.out.println(" tercera opcion mmmm");
+            System.out.println(" ultima opcion mmmm");
             for (ListaEnlazada elemento : miArrayList) {
 
                 //// ENVIAR TODOS LOS PAQUETES DE TOKENS EN LA MULTIPLICACON
-
-                factorPrimario.scanFactorPrimario(tmpListToken);
+                if (!factorPrimario.scanFactorPrimario(tmpListToken)) {
+                    return false;
+                }
+                
 
             }
 
         }
+
+        return false;
 
     }
 
@@ -196,7 +205,7 @@ public class ExpresionMultiplicacion {
     }
 
         public boolean cuartaOpcion() {
-        System.out.println("Primera opción");
+        System.out.println("cuarta opción");
         
         boolean tmpSalto = true;
         while (tmpSalto) {
@@ -225,12 +234,5 @@ public class ExpresionMultiplicacion {
     }
 
 
-    public boolean isMultiplicatica() {
-        return multiplicatica;
-    }
-
-    public void setMultiplicatica(boolean multiplicatica) {
-        this.multiplicatica = multiplicatica;
-    }
 
 }

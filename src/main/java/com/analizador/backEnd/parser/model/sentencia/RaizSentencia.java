@@ -52,14 +52,13 @@ public class RaizSentencia {
         System.out.println( " llegamos a una scan sentencia ");
 
         
-        if (expresionRaiz.scanExpresion(nivelIdentacion, tmpListTokens)) {
+        if (expresionRaiz.scanExpresion(nivelIdentacion, this.tmpListTokens)) {
 
             // se analiza si es una expresion
             // conectar con expresion
             listTokens = tmpListTokens;
 
         } else if (asignacion.scanAsigancion(tmpListTokens)) {
-
             //// se analiza si es una asiganacion
             listTokens = tmpListTokens;
 

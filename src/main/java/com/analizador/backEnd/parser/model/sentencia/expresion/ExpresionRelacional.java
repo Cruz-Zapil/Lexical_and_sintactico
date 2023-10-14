@@ -10,16 +10,13 @@ public class ExpresionRelacional {
         //// SOLO SE CONECTA CON LA EXPRESION ADITIVA
         
         System.out.println(" expreison relacional ");
-        expresionAditiva.scanExpresionAditiva(tmpListTokens);
-
-       
-
-       
-
+        
+           
+        
         /// DEPUES ANALIZA LA POSIBILIDAD DE UN COMPRADOR Y OTRA EXPRESION ADITIVA 
 
 
-        return false;
+        return expresionAditiva.scanExpresionAditiva(tmpListTokens);
 
     }
 

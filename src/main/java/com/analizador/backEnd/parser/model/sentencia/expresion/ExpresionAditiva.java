@@ -15,7 +15,7 @@ public class ExpresionAditiva {
     private ArrayList<ListaEnlazada> miArrayList = new ArrayList<>();
     private ListaEnlazada tmpListToken;
 
-    public void scanExpresionAditiva(ListaEnlazada tmpListToken) {
+    public boolean scanExpresionAditiva(ListaEnlazada tmpListToken) {
 
         this.tmpListToken = tmpListToken;
 
@@ -30,6 +30,7 @@ public class ExpresionAditiva {
         //// ADITIVA CON UN SIGNO MENOS Y UNA MULTIPLICACION
 
         /// O SIMPLEMENTE UN MULTIPLICATION
+
 
         if (primeraOpcion() && opcicion1 == true) {
             System.out.println(" primera opcion en aditiva ");
@@ -60,18 +61,24 @@ public class ExpresionAditiva {
             System.out.println(" ultima opion aditiva ");
             eliminala();
             for (ListaEnlazada elemento : miArrayList) {
-
-                expresionMultiplicacion.scanExpresionMultiplicativa(elemento);
+                if (expresionMultiplicacion.scanExpresionMultiplicativa(elemento) ) {
+                    return true;                    
+                }else {
+                    return false;
+                }
+                
             }
 
         }
 
+        return false;
+
     }
+
+
 
     public boolean primeraOpcion() {
         this.tmpListToken.reiniciarRecorrido();
-        System.out.println(" primera opcion aditiva ");
-
         boolean tmpSalto = true;
 
         while (tmpSalto) {
@@ -119,8 +126,8 @@ public class ExpresionAditiva {
 
     public boolean segundaOpcion() {
         this.tmpListToken.reiniciarRecorrido();
-        System.out.println(" segudna opcion aditiva ");
 
+        System.out.println( " segunda opcion 2");
         boolean tmpSalto = true;
 
         while (tmpSalto) {
@@ -175,45 +182,5 @@ public class ExpresionAditiva {
         }
 
     }
-
-    /*
-     * 
-     * 
-     * 
-     * public boolean terceraOpcion() {
-     * 
-     * boolean tmpSalto = true;
-     * 
-     * while (tmpSalto) {
-     * 
-     * ListaEnlazada tmplist = new ListaEnlazada();
-     * Token tmpToken = this.tmpListToken.eliminarPrimero();
-     * if (!tmpToken.getTokenType().equals(BloqueCodigo.NEWLINE)) {
-     * tmplist.insertarAlFinal(tmpToken);
-     * } else {
-     * break;
-     * }
-     * 
-     * if (!tmplist.estaVacia()) {
-     * 
-     * miArrayList.add(tmplist);
-     * }
-     * }
-     * 
-     * if (!miArrayList.isEmpty()) {
-     * return true;
-     * }
-     * return false;
-     * }
-     * 
-     * public boolean isMultiplicatica() {
-     * return multiplicatica;
-     * }
-     * 
-     * public void setMultiplicatica(boolean multiplicatica) {
-     * this.multiplicatica = multiplicatica;
-     * }
-     * 
-     */
 
 }

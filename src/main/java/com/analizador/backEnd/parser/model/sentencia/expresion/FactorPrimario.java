@@ -36,7 +36,6 @@ public class FactorPrimario {
       System.out.println(this.lexema.getTokenType()+"++++ ");
       /// COMENZAREMOS CON IDENTIFICADOR
       if (this.lexema.getTokenType().equals(Constante.ID)) {
-
          System.out.println(" es un ID desde fator primario");
          return true;
 
@@ -67,6 +66,7 @@ public class FactorPrimario {
          return true;
       } else {
          System.out.println(" puede que sea otra situacion desde factor primario ");
+         return false;
       }
 
       /*
@@ -83,8 +83,6 @@ public class FactorPrimario {
        * /// "(" expresion ")"
        * }
        */
-
-      return false;
 
    }
 
