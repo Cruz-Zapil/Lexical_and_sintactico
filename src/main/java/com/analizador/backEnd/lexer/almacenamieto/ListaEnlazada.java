@@ -26,32 +26,6 @@ public class ListaEnlazada {
         }
     }
 
-    public Token eliminarAlFinal() {
-        if (ultimo == null) {
-            System.out.println(" error ya no hay mas lexemas");
-            return null;
-        } else if (primero == ultimo) {
-            Token valor = ultimo.getLexema();
-            primero = null;
-            ultimo = null;
-            return valor;
-        } else if (primero.getSiguiente() == ultimo) {
-            Token valor = ultimo.getLexema();
-            primero.setSiguiente(null);
-            ultimo = primero;
-            return valor;
-
-        } else {
-            Nodo nodoActual = primero;
-            while (nodoActual.getSiguiente() != ultimo) {
-                nodoActual = nodoActual.getSiguiente();
-            }
-            Token valor = ultimo.getLexema();
-            nodoActual.setSiguiente(null);
-            ultimo = nodoActual;
-            return valor;
-        }
-    }
 
     public Token getUtltimo() {
         if (ultimo == null) {
@@ -112,22 +86,40 @@ public class ListaEnlazada {
         return datos;
     }
 
-    public boolean estaVacia() {
-        return primero == null;
-    }
 
-    public Token getPrimerElemento() {
-        if (estaVacia()) {
-            System.out.println("La lista está vacía, no hay elementos para obtener.");
-            return null;
+public void eliminarToken(Token token) {
+    Nodo nodoActual = primero;
+    Nodo nodoAnterior = null;
+
+    while (nodoActual != null) {
+        if (nodoActual.getLexema().equals(token)) {
+            // Se encontró el token a eliminar
+            if (nodoAnterior == null) {
+                // El nodo a eliminar es el primero
+                primero = nodoActual.getSiguiente();
+            } else {
+                // Conectar el nodo anterior con el siguiente
+                nodoAnterior.setSiguiente(nodoActual.getSiguiente());
+            }
+            // Si el nodo a eliminar es el último, actualiza 'ultimo'
+            if (nodoActual == ultimo) {
+                ultimo = nodoAnterior;
+            }
+            // Elimina el nodo
+            nodoActual = null;
+            return; // Token eliminado
         }
-
-        return getPrimero().getLexema();
+        nodoAnterior = nodoActual;
+        nodoActual = nodoActual.getSiguiente();
     }
+    System.out.println("El token no se encontró en la lista.");
+}
 
-    public void reiniciarRecorrido() {
-        nodoActual = primero;
-    }
+
+public void reiniciarRecorrido() {
+    nodoActual = primero;
+}
+
 
 public Token obtenerSiguiente() {
     if (nodoActual == null) {
@@ -139,6 +131,20 @@ public Token obtenerSiguiente() {
         return siguienteToken;
     }
 }
+
+    public boolean estaVacia() {
+        return primero == null;
+    }
+
+    /// solo obtine el primer elemento 
+    public Token getPrimerElemento() {
+        if (estaVacia()) {
+            System.out.println("La lista está vacía, no hay elementos para obtener.");
+            return null;
+        }
+
+        return getPrimero().getLexema();
+    }   
 
 }
 

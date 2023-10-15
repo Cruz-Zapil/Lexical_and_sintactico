@@ -23,7 +23,7 @@ public class Parametros {
                 if (this.lexema.getTokenType().equals(Constante.ID)) {
 
                     if (listLexema.getSiguiente().getTokenType().equals(Delimitador.COMA)) {
-                        listLexema.eliminarAlFinal();
+                        listLexema.eliminarPrimero();
                     } else {
                         /// se detiene el ciclo
                         pila = false;

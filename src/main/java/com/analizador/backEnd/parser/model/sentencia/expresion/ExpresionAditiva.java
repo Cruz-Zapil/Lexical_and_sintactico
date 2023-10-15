@@ -31,15 +31,15 @@ public class ExpresionAditiva {
 
         /// O SIMPLEMENTE UN MULTIPLICATION
 
-
         if (primeraOpcion() && opcicion1 == true) {
             System.out.println(" primera opcion en aditiva ");
 
             for (ListaEnlazada elemento : miArrayList) {
 
                 //// ENVIAR TODOS LOS PAQUETES DE TOKENS EN LA MULTIPLICACON
-                eliminala();
+
                 if (!elemento.getSiguiente().getTokenType().equals(Aritmetico.SUMA)) {
+                    System.out.println("---" + elemento.getSiguiente().getTokenType());
                     expresionMultiplicacion.scanExpresionMultiplicativa(elemento);
                 }
 
@@ -47,10 +47,11 @@ public class ExpresionAditiva {
 
         } else if (segundaOpcion() && opcicion2 == true) {
             System.out.println(" seguanda opcion en aditiva");
-            eliminala();
+
             for (ListaEnlazada elemento : miArrayList) {
 
                 if (!elemento.getSiguiente().getTokenType().equals(Aritmetico.RESTA)) {
+                    System.out.println("---" + elemento.getSiguiente().getTokenType());
                     expresionMultiplicacion.scanExpresionMultiplicativa(elemento);
                 }
 
@@ -59,14 +60,14 @@ public class ExpresionAditiva {
         } else {
 
             System.out.println(" ultima opion aditiva ");
-            eliminala();
+
             for (ListaEnlazada elemento : miArrayList) {
-                if (expresionMultiplicacion.scanExpresionMultiplicativa(elemento) ) {
-                    return true;                    
-                }else {
+                if (expresionMultiplicacion.scanExpresionMultiplicativa(elemento)) {
+                    return true;
+                } else {
                     return false;
                 }
-                
+
             }
 
         }
@@ -75,112 +76,83 @@ public class ExpresionAditiva {
 
     }
 
-
-
     public boolean primeraOpcion() {
         this.tmpListToken.reiniciarRecorrido();
+
         boolean tmpSalto = true;
 
         while (tmpSalto) {
 
             boolean tmpSigno = true;
-            ListaEnlazada tmplist = new ListaEnlazada();
 
+            ListaEnlazada tmplist = new ListaEnlazada();
             while (tmpSigno) {
 
                 Token tmpToken = this.tmpListToken.obtenerSiguiente();
                 if (!tmpToken.getTokenType().equals(Aritmetico.SUMA)) {
-
                     if (!tmpToken.getTokenType().equals(BloqueCodigo.NEWLINE)
                             && !tmpToken.getTokenType().equals(Constante.EOF)) {
-                        System.out.println(tmpToken.getTokenType() + " primera opcion a");
                         tmplist.insertarAlFinal(tmpToken);
-
                     } else {
+
+                        if (!tmplist.estaVacia()) {
+                            miArrayList.add(tmplist);
+                        }
                         tmpSalto = false;
                         tmpSigno = false;
-
                     }
                 } else {
-
+                    if (!tmplist.estaVacia()) {
+                        miArrayList.add(tmplist);
+                    }
                     ListaEnlazada a = new ListaEnlazada();
                     a.insertarAlFinal(tmpToken);
                     miArrayList.add(a);
-                    opcicion1 = true;
-
                     tmpSigno = false;
+                    opcicion1 = true;
                 }
-
-            }
-            if (!tmplist.estaVacia()) {
-                miArrayList.add(tmplist);
             }
         }
-        if (!miArrayList.isEmpty()) {
-            return true;
-        }
-
-        return false;
-
+        return miArrayList.isEmpty();
     }
 
     public boolean segundaOpcion() {
         this.tmpListToken.reiniciarRecorrido();
 
-        System.out.println( " segunda opcion 2");
         boolean tmpSalto = true;
 
         while (tmpSalto) {
 
             boolean tmpSigno = true;
-            ListaEnlazada tmplist = new ListaEnlazada();
 
+            ListaEnlazada tmplist = new ListaEnlazada();
             while (tmpSigno) {
 
                 Token tmpToken = this.tmpListToken.obtenerSiguiente();
                 if (!tmpToken.getTokenType().equals(Aritmetico.RESTA)) {
                     if (!tmpToken.getTokenType().equals(BloqueCodigo.NEWLINE)
                             && !tmpToken.getTokenType().equals(Constante.EOF)) {
-                        System.out.println(tmpToken.getTokenType() + " desde segunda opcion de a");
                         tmplist.insertarAlFinal(tmpToken);
                     } else {
+
+                        if (!tmplist.estaVacia()) {
+                            miArrayList.add(tmplist);
+                        }
                         tmpSalto = false;
                         tmpSigno = false;
                     }
                 } else {
+                    if (!tmplist.estaVacia()) {
+                        miArrayList.add(tmplist);
+                    }
                     ListaEnlazada a = new ListaEnlazada();
                     a.insertarAlFinal(tmpToken);
                     miArrayList.add(a);
                     tmpSigno = false;
                     opcicion2 = true;
                 }
-
-            }
-            if (!tmplist.estaVacia()) {
-
-                miArrayList.add(tmplist);
             }
         }
-
-        if (!miArrayList.isEmpty()) {
-            return true;
-        }
-
-        return false;
-
+        return miArrayList.isEmpty();
     }
-
-    public void eliminala() {
-        boolean tmp= true;
-        while (tmp) {
-
-            Token tmps = this.tmpListToken.eliminarPrimero();
-            
-            if (tmps.getTokenType().equals(BloqueCodigo.NEWLINE)) {
-                break;                
-            }
-        }
-
-    }
-
 }
